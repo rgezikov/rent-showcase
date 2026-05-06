@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{{ profile_user.display_name }} — Rent Showcase{% endblock %}
+
+{% block content %}
+<div class="max-w-3xl mx-auto px-4 py-10">
+
+  <!-- Profile header -->
+  <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
+    <div class="flex items-start gap-6">
+
+      <!-- Avatar -->
+      <div class="shrink-0">
+        {% if profile_user.avatar %}
+          <img src="{{ profile_user.avatar.url }}"
+               class="w-20 h-20 rounded-full object-cover" alt="{{ profile_user.display_name }}">
+        {% else %}
+          <div class="w-20 h-20 rounded-full bg-blue-100 flex items-center justify-center">
+            <span class="text-2xl font-bold text-blue-600">
+              {{ profile_user.first_name|default:profile_user.display_name|first|upper }}
+            </span>
+          </div>
+        {% endif %}
+      </div>
+
+      <!-- Info -->
+      <div class="flex-1 min-w-0">
+        <div class="flex items-center gap-3 flex-wrap">
+          <h1 class="text-xl font-bold text-gray-900">{{ profile_user.get_full_name|default:profile_user.display_name }}</h1>
+          <span class="text-xs px-2 py-0.5 rounded-full
+            {% if profile_user.is_company %}bg-purple-100 text-purple-700{% else %}bg-green-100 text-green-700{% endif %}">
+            {% if profile_user.is_company %}{% trans "Company" %}{% else %}{% trans "Person" %}{% endif %}
+          </span>
+        </div>
+
+        {% if profile_user.location %}
+          <p class="text-sm text-gray-500 mt-1">{{ profile_user.location }}</p>
+        {% endif %}
+
+        <p class="text-xs text-gray-400 mt-1">
+          {% trans "Member since" %} {{ profile_user.date_joined|date:"N Y" }}
+        </p>
+
+        {% if profile_user.bio %}
+          <p class="text-sm text-gray-700 mt-3">{{ profile_user.bio }}</p>
+        {% endif %}
+      </div>
+
+      <!-- Edit button (own profile) -->
+      {% if user == profile_user %}
+        <a href="{% url 'accounts:profile_edit' %}"
+           class="shrink-0 text-sm text-blue-600 border border-blue-600 px-3 py-1.5 rounded-md hover:bg-blue-50">
+          {% trans "Edit profile" %}
+        </a>
+      {% endif %}
+    </div>
+
+    <!-- Contact details -->
+    <div class="mt-5 pt-5 border-t border-gray-100 grid grid-cols-1 sm:grid-cols-2 gap-3">
+      <div>
+        <span class="text-xs font-medium text-gray-500 uppercase tracking-wide">{% trans "Email" %}</span>
+        <p class="text-sm text-gray-800 mt-0.5">{{ profile_user.email }}</p>
+      </div>
+      {% if profile_user.phone %}
+        <div>
+          <span class="text-xs font-medium text-gray-500 uppercase tracking-wide">{% trans "Phone" %}</span>
+          <p class="text-sm text-gray-800 mt-0.5">{{ profile_user.phone }}</p>
+        </div>
+      {% endif %}
+      {% if profile_user.is_company and profile_user.company_name %}
+        <div>
+          <span class="text-xs font-medium text-gray-500 uppercase tracking-wide">{% trans "Company" %}</span>
+          <p class="text-sm text-gray-800 mt-0.5">{{ profile_user.company_name }}</p>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+
+  <!-- Listings placeholder -->
+  <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+    <h2 class="text-base font-semibold text-gray-900 mb-4">{% trans "Active listings" %}</h2>
+    <p class="text-sm text-gray-500">{% trans "No listings yet." %}</p>
+  </div>
+
+  <!-- Danger zone (own profile) -->
+  {% if user == profile_user %}
+    <div class="mt-6 border border-red-200 rounded-lg p-4">
+      <h3 class="text-sm font-semibold text-red-700 mb-1">{% trans "Delete account" %}</h3>
+      <p class="text-xs text-gray-500 mb-3">
+        {% trans "Permanently deletes your account and all your data. This cannot be undone." %}
+      </p>
+      <a href="{% url 'accounts:account_delete' %}"
+         class="text-xs text-red-600 border border-red-300 px-3 py-1.5 rounded-md hover:bg-red-50">
+        {% trans "Delete my account" %}
+      </a>
+    </div>
+  {% endif %}
+
+</div>
+{% endblock %}

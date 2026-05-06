@@ -1,0 +1,13 @@
+Hi {{ user.first_name }},
+
+Thank you for registering at Rent Showcase.
+
+Please verify your email address by clicking the link below:
+
+{{ verify_url }}
+
+This link is valid for 24 hours.
+
+If you did not create an account, please ignore this email.
+
+— Rent Showcase

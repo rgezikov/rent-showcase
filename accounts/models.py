@@ -11,6 +11,8 @@ class User(AbstractUser):
         (COMPANY, _('Company')),
     ]
 
+    email = models.EmailField(_('email address'), unique=True)
+
     account_type = models.CharField(
         _('account type'),
         max_length=10,
