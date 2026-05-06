@@ -1,0 +1,28 @@
+services:
+  app:
+    build:
+      context: .
+      target: dev
+    command: uv run python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/app
+      - /app/.venv
+    ports:
+      - "8000:8000"
+    environment:
+      - DEBUG=True
+
+  tailwind:
+    image: node:20-alpine
+    working_dir: /app
+    volumes:
+      - .:/app
+      - node_modules:/app/node_modules
+    command: sh -c "npm install && npm run dev"
+
+  db:
+    ports:
+      - "5432:5432"
+
+volumes:
+  node_modules:

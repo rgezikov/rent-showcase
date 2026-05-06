@@ -35,6 +35,10 @@ staticfiles/
 # Docker
 .docker/
 
+# Node / Tailwind
+node_modules/
+static/css/output.css
+
 # IDE
 .vscode/
 .idea/

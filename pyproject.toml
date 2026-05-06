@@ -1,0 +1,23 @@
+[project]
+name = "rent-showcase"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = [
+    "django>=5.1,<6.0",
+    "psycopg[binary]>=3.2",
+    "pillow>=11.0",
+    "python-decouple>=3.8",
+    "whitenoise[brotli]>=6.8",
+    "gunicorn>=23.0",
+]
+
+[dependency-groups]
+dev = [
+    "django-browser-reload>=1.17",
+    "pytest-django>=4.9",
+    "factory-boy>=3.3",
+]
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "config.settings.dev"
+python_files = ["tests.py", "test_*.py"]
