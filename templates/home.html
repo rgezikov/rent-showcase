@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}Rent Showcase — {% trans "Equipment Rental Marketplace" %}{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+
+  <!-- Hero -->
+  <div class="text-center max-w-3xl mx-auto">
+    <h1 class="text-4xl sm:text-5xl font-bold text-gray-900 leading-tight">
+      {% trans "Rent equipment." %}
+      <span class="text-blue-600">{% trans "Simply." %}</span>
+    </h1>
+    <p class="mt-6 text-lg text-gray-600">
+      {% trans "Find equipment to rent from people and organisations near you, or list your own equipment and reach customers ready to rent." %}
+    </p>
+    <div class="mt-8 flex flex-col sm:flex-row justify-center gap-4">
+      <a href="#"
+         class="bg-blue-600 text-white px-6 py-3 rounded-md text-sm font-medium hover:bg-blue-700">
+        {% trans "Browse Equipment" %}
+      </a>
+      <a href="#"
+         class="bg-white text-blue-600 border border-blue-600 px-6 py-3 rounded-md text-sm font-medium hover:bg-blue-50">
+        {% trans "List Your Equipment" %}
+      </a>
+    </div>
+  </div>
+
+  <!-- How it works -->
+  <div class="mt-24">
+    <h2 class="text-2xl font-bold text-center text-gray-900 mb-12">{% trans "How it works" %}</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+      <div class="text-center">
+        <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+          <span class="text-blue-600 font-bold text-lg">1</span>
+        </div>
+        <h3 class="font-semibold text-gray-900 mb-2">{% trans "Find equipment" %}</h3>
+        <p class="text-sm text-gray-600">{% trans "Browse listings by category or location and find what you need." %}</p>
+      </div>
+
+      <div class="text-center">
+        <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+          <span class="text-blue-600 font-bold text-lg">2</span>
+        </div>
+        <h3 class="font-semibold text-gray-900 mb-2">{% trans "Request a booking" %}</h3>
+        <p class="text-sm text-gray-600">{% trans "Select your dates, send a request, and wait for the owner to confirm." %}</p>
+      </div>
+
+      <div class="text-center">
+        <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+          <span class="text-blue-600 font-bold text-lg">3</span>
+        </div>
+        <h3 class="font-semibold text-gray-900 mb-2">{% trans "Get renting" %}</h3>
+        <p class="text-sm text-gray-600">{% trans "Coordinate pickup and payment directly with the owner." %}</p>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+{% endblock %}
