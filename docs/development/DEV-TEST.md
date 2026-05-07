@@ -180,7 +180,19 @@ docker compose exec app uv run pytest -m e2e
 ## Phase 7: Regression & pre-deployment
 *Runs before [DEV.md Phase 11](DEV.md#phase-11-deployment)*
 
+### Staging environment (Option A: two stacks on one VPS)
+Run a staging stack alongside production on the same Hetzner VPS:
+- Two directories: `/srv/rent-showcase/prod` and `/srv/rent-showcase/staging`
+- Each has its own `.env` file with separate `SECRET_KEY`, DB name, and port
+- Nginx routes by subdomain: `app.yourdomain.com` → prod, `staging.yourdomain.com` → staging
+- Each subdomain gets its own Let's Encrypt certificate
+- Completely isolated — separate databases, separate media files
+- A Hetzner CX22 (4 GB RAM) handles both stacks comfortably
+
+The full E2E suite runs against the staging stack before every production deploy.
+
+### Checklist
 - Full pytest suite passes with zero failures
-- E2E suite passes against the production Docker Compose stack (`docker-compose.prod.yml`) on a staging run
+- E2E suite passes against the staging stack
 - No DEBUG-only code paths reachable in production settings
 - Static files collected and served correctly by WhiteNoise / Nginx
