@@ -70,8 +70,8 @@ class BlockedDateRangeForm(forms.ModelForm):
         model = BlockedDateRange
         fields = ['start_date', 'end_date']
         widgets = {
-            'start_date': forms.DateInput(attrs={**WIDGET_CLASS, 'type': 'date'}),
-            'end_date': forms.DateInput(attrs={**WIDGET_CLASS, 'type': 'date'}),
+            'start_date': forms.DateInput(attrs={**WIDGET_CLASS, 'placeholder': 'yyyy-mm-dd'}, format='%Y-%m-%d'),
+            'end_date': forms.DateInput(attrs={**WIDGET_CLASS, 'placeholder': 'yyyy-mm-dd'}, format='%Y-%m-%d'),
         }
 
     def clean(self):

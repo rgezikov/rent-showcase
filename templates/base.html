@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{% block title %}Rent Showcase{% endblock %}</title>
   <link rel="stylesheet" href="{% static 'css/output.css' %}">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 </head>
 <body class="min-h-screen flex flex-col bg-gray-50 text-gray-900">
 
@@ -164,6 +165,14 @@
   </footer>
 
   <script src="https://unpkg.com/htmx.org@1.9.12" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      document.querySelectorAll('input[placeholder="yyyy-mm-dd"]').forEach(function (el) {
+        flatpickr(el, { dateFormat: 'Y-m-d', allowInput: true });
+      });
+    });
+  </script>
   <script>
     document.getElementById('mobile-menu-btn').addEventListener('click', function () {
       document.getElementById('mobile-menu').classList.toggle('hidden');
