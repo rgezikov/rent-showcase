@@ -191,18 +191,20 @@
           {% endif %}
         </div>
 
-        <!-- Book button (placeholder for Phase 4) -->
+        <!-- Book button -->
         {% if user.is_authenticated %}
           <div class="bg-white border border-gray-200 rounded-lg p-4">
             <p class="text-2xl font-bold text-gray-900 mb-1">{{ listing.price_per_day }} € <span class="text-sm font-normal text-gray-500">/ {% trans "day" %}</span></p>
             {% if listing.quantity > 1 %}
               <p class="text-xs text-gray-500 mb-3">{{ listing.quantity }} {% trans "units available" %}</p>
             {% endif %}
-            <button disabled
-                    class="w-full text-sm bg-blue-600 text-white py-2 rounded-md opacity-50 cursor-not-allowed">
+            {% if listing.auto_accept %}
+              <p class="text-xs text-green-600 mb-3">⚡ {% trans "Auto-accept enabled" %}</p>
+            {% endif %}
+            <a href="{% url 'bookings:create' listing.pk %}"
+               class="block w-full text-sm text-center bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 font-medium">
               {% trans "Request booking" %}
-            </button>
-            <p class="text-xs text-gray-400 mt-2 text-center">{% trans "Booking coming soon." %}</p>
+            </a>
           </div>
         {% endif %}
       {% endif %}

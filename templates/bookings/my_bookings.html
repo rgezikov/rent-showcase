@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "My Bookings" %} — Rent Showcase{% endblock %}
+
+{% block content %}
+<div class="max-w-3xl mx-auto px-4 py-10">
+  <h1 class="text-2xl font-bold text-gray-900 mb-6">{% trans "My Bookings" %}</h1>
+
+  {% if bookings %}
+    <div class="space-y-4">
+      {% for booking in bookings %}
+        <a href="{{ booking.get_absolute_url }}"
+           class="block bg-white border border-gray-200 rounded-lg p-4 hover:shadow-sm transition-shadow">
+          <div class="flex items-start justify-between gap-4">
+            <div class="flex-1 min-w-0">
+              <p class="text-sm font-semibold text-gray-900 truncate">{{ booking.listing.title }}</p>
+              <p class="text-xs text-gray-500 mt-0.5">{{ booking.listing.location }}</p>
+              <p class="text-xs text-gray-500 mt-1">{{ booking.start_date }} – {{ booking.end_date }}</p>
+              {% if booking.total_price %}
+                <p class="text-sm font-medium text-blue-600 mt-1">{{ booking.total_price }} €</p>
+              {% endif %}
+            </div>
+            <span class="shrink-0 text-xs px-2 py-1 rounded-full font-medium
+              {% if booking.status == 'pending' %}bg-yellow-100 text-yellow-700
+              {% elif booking.status == 'confirmed' %}bg-green-100 text-green-700
+              {% elif booking.status == 'rejected' %}bg-red-100 text-red-700
+              {% elif booking.status == 'cancelled' %}bg-gray-100 text-gray-500
+              {% elif booking.status == 'completed' %}bg-blue-100 text-blue-700
+              {% endif %}">
+              {{ booking.get_status_display }}
+            </span>
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="text-center py-20 text-gray-400">
+      <p class="text-lg mb-4">{% trans "You haven't made any bookings yet." %}</p>
+      <a href="{% url 'listings:list' %}"
+         class="text-sm bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700">
+        {% trans "Browse equipment" %}
+      </a>
+    </div>
+  {% endif %}
+</div>
+{% endblock %}
