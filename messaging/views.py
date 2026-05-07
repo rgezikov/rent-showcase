@@ -3,6 +3,8 @@ from django.http import Http404
 from django.shortcuts import redirect, get_object_or_404
 
 from bookings.models import Booking
+from notifications.models import Notification
+from notifications.utils import create_notification
 from .forms import MessageForm
 from .models import Message
 
@@ -23,5 +25,7 @@ def send_message(request, booking_pk):
                 sender=request.user,
                 body=form.cleaned_data['body'],
             )
+            recipient = booking.renter if request.user == booking.listing.owner else booking.listing.owner
+            create_notification(recipient, Notification.NEW_MESSAGE, booking)
 
     return redirect('bookings:detail', pk=booking_pk)

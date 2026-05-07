@@ -4,6 +4,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.utils.translation import gettext_lazy as _
 
 from listings.models import Listing
+from notifications.models import Notification
+from notifications.utils import create_notification
 from .forms import BookingForm
 from .models import Booking
 
@@ -30,9 +32,12 @@ def booking_create(request, listing_pk):
                 booking.status = Booking.CONFIRMED
                 booking.save()
                 _post_auto_accept_message(booking, listing)
+                create_notification(listing.owner, Notification.NEW_BOOKING, booking)
+                create_notification(request.user, Notification.BOOKING_CONFIRMED, booking)
                 messages.success(request, _('Booking confirmed automatically.'))
             else:
                 booking.save()
+                create_notification(listing.owner, Notification.NEW_BOOKING, booking)
                 messages.success(request, _('Booking request sent. The owner will respond shortly.'))
 
             return redirect('bookings:detail', pk=booking.pk)
@@ -49,8 +54,8 @@ def booking_create(request, listing_pk):
 def booking_detail(request, pk):
     booking = get_object_or_404(Booking, pk=pk)
 
-    is_owner = request.user.is_authenticated and request.user == booking.listing.owner
-    is_renter = request.user.is_authenticated and request.user == booking.renter
+    is_owner = request.user == booking.listing.owner
+    is_renter = request.user == booking.renter
 
     if not (is_owner or is_renter):
         from django.http import Http404
@@ -71,6 +76,7 @@ def booking_confirm(request, pk):
     if request.method == 'POST':
         booking.status = Booking.CONFIRMED
         booking.save(update_fields=['status', 'updated_at'])
+        create_notification(booking.renter, Notification.BOOKING_CONFIRMED, booking)
         messages.success(request, _('Booking confirmed.'))
         return redirect('bookings:detail', pk=pk)
     return redirect('bookings:detail', pk=pk)
@@ -82,6 +88,7 @@ def booking_reject(request, pk):
     if request.method == 'POST':
         booking.status = Booking.REJECTED
         booking.save(update_fields=['status', 'updated_at'])
+        create_notification(booking.renter, Notification.BOOKING_REJECTED, booking)
         messages.success(request, _('Booking rejected.'))
         return redirect('bookings:detail', pk=pk)
     return redirect('bookings:detail', pk=pk)
@@ -102,6 +109,10 @@ def booking_cancel(request, pk):
     if request.method == 'POST' and cancellable:
         booking.status = Booking.CANCELLED
         booking.save(update_fields=['status', 'updated_at'])
+        if is_renter:
+            create_notification(booking.listing.owner, Notification.BOOKING_CANCELLED, booking)
+        else:
+            create_notification(booking.renter, Notification.BOOKING_CANCELLED, booking)
         messages.success(request, _('Booking cancelled.'))
         return redirect('bookings:detail', pk=pk)
 

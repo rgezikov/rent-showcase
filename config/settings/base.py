@@ -18,6 +18,7 @@ INSTALLED_APPS = [
     'listings',
     'bookings',
     'messaging',
+    'notifications',
 ]
 
 MIDDLEWARE = [
@@ -46,6 +47,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.i18n',
+                'notifications.context_processors.unread_notifications',
             ],
         },
     },
