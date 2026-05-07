@@ -122,4 +122,18 @@
     </div>
   </div>
 </div>
+
+{% block extra_js %}
+<script>
+  var unavailable = {{ unavailable_json }};
+  var pickerOpts = {
+    dateFormat: 'Y-m-d',
+    minDate: 'today',
+    disable: unavailable,
+    allowInput: true,
+  };
+  flatpickr('#id_start_date', pickerOpts);
+  flatpickr('#id_end_date', pickerOpts);
+</script>
+{% endblock %}
 {% endblock %}

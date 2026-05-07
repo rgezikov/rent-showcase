@@ -3,6 +3,8 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils.translation import gettext_lazy as _
 
+import json
+
 from listings.models import Listing
 from notifications.models import Notification
 from notifications.utils import create_notification
@@ -44,9 +46,11 @@ def booking_create(request, listing_pk):
     else:
         form = BookingForm(listing)
 
+    unavailable = _unavailable_ranges(listing)
     return render(request, 'bookings/booking_form.html', {
         'form': form,
         'listing': listing,
+        'unavailable_json': json.dumps(unavailable),
     })
 
 
@@ -146,6 +150,15 @@ def booking_requests(request):
         'pending': pending,
         'active': active,
     })
+
+
+def _unavailable_ranges(listing):
+    ranges = []
+    for bd in listing.blocked_dates.all():
+        ranges.append({'from': str(bd.start_date), 'to': str(bd.end_date)})
+    for b in Booking.objects.filter(listing=listing, status=Booking.CONFIRMED):
+        ranges.append({'from': str(b.start_date), 'to': str(b.end_date)})
+    return ranges
 
 
 def _post_auto_accept_message(booking, listing):

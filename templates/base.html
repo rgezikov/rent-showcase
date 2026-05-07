@@ -168,7 +168,7 @@
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function () {
-      document.querySelectorAll('input[placeholder="yyyy-mm-dd"]').forEach(function (el) {
+      document.querySelectorAll('input[placeholder="yyyy-mm-dd"]:not([data-fp-custom])').forEach(function (el) {
         flatpickr(el, { dateFormat: 'Y-m-d', allowInput: true });
       });
     });

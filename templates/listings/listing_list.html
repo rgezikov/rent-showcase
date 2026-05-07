@@ -30,10 +30,16 @@
           </option>
         {% endfor %}
       </select>
+      <input type="text" name="location" value="{{ selected_location }}"
+             placeholder="{% trans 'Location' %}"
+             class="rounded-md border-gray-300 text-sm w-full">
+      <input type="text" name="from_date" value="{{ from_date }}"
+             placeholder="{% trans 'Available from (yyyy-mm-dd)' %}"
+             class="rounded-md border-gray-300 text-sm w-full date-filter">
       <div class="flex gap-2">
-        <input type="text" name="location" value="{{ selected_location }}"
-               placeholder="{% trans 'Location' %}"
-               class="rounded-md border-gray-300 text-sm flex-1">
+        <input type="text" name="to_date" value="{{ to_date }}"
+               placeholder="{% trans 'Available to (yyyy-mm-dd)' %}"
+               class="rounded-md border-gray-300 text-sm flex-1 date-filter">
         <button type="submit"
                 class="bg-blue-600 text-white px-4 py-2 rounded-md text-sm hover:bg-blue-700 shrink-0">
           {% trans "Search" %}
@@ -83,4 +89,12 @@
     </div>
   {% endif %}
 </div>
+
+{% block extra_js %}
+<script>
+  document.querySelectorAll('.date-filter').forEach(function (el) {
+    flatpickr(el, { dateFormat: 'Y-m-d', minDate: 'today', allowInput: true });
+  });
+</script>
+{% endblock %}
 {% endblock %}

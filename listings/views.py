@@ -1,3 +1,5 @@
+import datetime
+
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
@@ -14,6 +16,8 @@ def listing_list(request):
     query = request.GET.get('q', '').strip()
     category_slug = request.GET.get('category', '').strip()
     location = request.GET.get('location', '').strip()
+    from_date_raw = request.GET.get('from_date', '').strip()
+    to_date_raw = request.GET.get('to_date', '').strip()
 
     if query:
         listings = listings.filter(
@@ -24,6 +28,26 @@ def listing_list(request):
     if location:
         listings = listings.filter(location__icontains=location)
 
+    from_date = to_date = None
+    if from_date_raw and to_date_raw:
+        try:
+            from_date = datetime.date.fromisoformat(from_date_raw)
+            to_date = datetime.date.fromisoformat(to_date_raw)
+            if from_date <= to_date:
+                from bookings.models import Booking
+                blocked_ids = BlockedDateRange.objects.filter(
+                    start_date__lte=to_date,
+                    end_date__gte=from_date,
+                ).values_list('listing_id', flat=True)
+                listings = listings.exclude(pk__in=blocked_ids)
+                available_pks = [
+                    l.pk for l in listings
+                    if Booking.is_available(l, from_date, to_date, 1)
+                ]
+                listings = listings.filter(pk__in=available_pks)
+        except ValueError:
+            from_date = to_date = None
+
     categories = Category.objects.all()
     return render(request, 'listings/listing_list.html', {
         'listings': listings,
@@ -31,12 +55,18 @@ def listing_list(request):
         'query': query,
         'selected_category': category_slug,
         'selected_location': location,
+        'from_date': from_date_raw,
+        'to_date': to_date_raw,
     })
 
 
 def listing_detail(request, pk):
+    from bookings.models import Booking
     listing = get_object_or_404(Listing, pk=pk, is_active=True)
     blocked_dates = listing.blocked_dates.all()
+    booked_dates = Booking.objects.filter(
+        listing=listing, status=Booking.CONFIRMED
+    ).order_by('start_date')
     blocked_form = None
     photo_form = None
 
@@ -49,6 +79,7 @@ def listing_detail(request, pk):
     return render(request, 'listings/listing_detail.html', {
         'listing': listing,
         'blocked_dates': blocked_dates,
+        'booked_dates': booked_dates,
         'blocked_form': blocked_form,
         'photo_form': photo_form,
         'is_owner': is_owner,

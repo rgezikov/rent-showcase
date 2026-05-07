@@ -13,8 +13,8 @@ class BookingForm(forms.ModelForm):
         model = Booking
         fields = ['start_date', 'end_date', 'quantity', 'note']
         widgets = {
-            'start_date': forms.DateInput(attrs={**WIDGET_CLASS, 'placeholder': 'yyyy-mm-dd'}, format='%Y-%m-%d'),
-            'end_date': forms.DateInput(attrs={**WIDGET_CLASS, 'placeholder': 'yyyy-mm-dd'}, format='%Y-%m-%d'),
+            'start_date': forms.DateInput(attrs={**WIDGET_CLASS, 'placeholder': 'yyyy-mm-dd', 'data-fp-custom': '1'}, format='%Y-%m-%d'),
+            'end_date': forms.DateInput(attrs={**WIDGET_CLASS, 'placeholder': 'yyyy-mm-dd', 'data-fp-custom': '1'}, format='%Y-%m-%d'),
             'note': forms.Textarea(attrs={**WIDGET_CLASS, 'rows': 3}),
         }
 
