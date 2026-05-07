@@ -56,10 +56,12 @@ def booking_detail(request, pk):
         from django.http import Http404
         raise Http404
 
+    from messaging.forms import MessageForm
     return render(request, 'bookings/booking_detail.html', {
         'booking': booking,
         'is_owner': is_owner,
         'is_renter': is_renter,
+        'message_form': MessageForm(),
     })
 
 

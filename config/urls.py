@@ -10,6 +10,7 @@ urlpatterns = [
     path('accounts/', include('accounts.urls', namespace='accounts')),
     path('listings/', include('listings.urls', namespace='listings')),
     path('bookings/', include('bookings.urls', namespace='bookings')),
+    path('messaging/', include('messaging.urls', namespace='messaging')),
     path('', TemplateView.as_view(template_name='home.html'), name='home'),
 ]
 
