@@ -16,8 +16,9 @@ def _book(page, base_url, listing_pk, days_ahead=7, duration=2):
     start = today() + delta(days_ahead)
     end = start + delta(duration)
     page.goto(f'{base_url}/bookings/create/{listing_pk}/')
-    page.fill('#id_start_date', start.isoformat())
-    page.fill('#id_end_date', end.isoformat())
+    # Use flatpickr's API to set dates (page.fill bypasses its event listeners)
+    page.evaluate(f"document.getElementById('id_start_date')._flatpickr.setDate('{start.isoformat()}')")
+    page.evaluate(f"document.getElementById('id_end_date')._flatpickr.setDate('{end.isoformat()}')")
     page.get_by_role('button', name='Send request').click()
 
 

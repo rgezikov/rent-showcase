@@ -1,3 +1,4 @@
+import datetime
 import pytest
 from django.urls import reverse
 from accounts.tests.factories import UserFactory
@@ -6,6 +7,9 @@ from listings.tests.factories import (
 )
 
 pytestmark = pytest.mark.django_db
+
+today = datetime.date.today
+delta = datetime.timedelta
 
 
 class TestListingListView:
@@ -45,6 +49,41 @@ class TestListingListView:
         assert match.title in titles
         assert no_match.title not in titles
 
+    def test_date_filter_includes_available_listing(self, client):
+        listing = ListingFactory()
+        start = (today() + delta(7)).isoformat()
+        end = (today() + delta(9)).isoformat()
+        listings = client.get(reverse('listings:list'), {'from_date': start, 'to_date': end}).context['listings']
+        assert listing.title in [l.title for l in listings]
+
+    def test_date_filter_excludes_fully_booked(self, client):
+        from bookings.models import Booking
+        from bookings.tests.factories import BookingFactory
+        listing = ListingFactory(quantity=1)
+        start = today() + delta(7)
+        end = today() + delta(9)
+        BookingFactory(listing=listing, status=Booking.CONFIRMED, start_date=start, end_date=end, quantity=1)
+        results = client.get(reverse('listings:list'), {
+            'from_date': start.isoformat(), 'to_date': end.isoformat(),
+        }).context['listings']
+        assert listing.title not in [l.title for l in results]
+
+    def test_date_filter_excludes_blocked(self, client):
+        listing = ListingFactory()
+        start = today() + delta(7)
+        end = today() + delta(9)
+        BlockedDateRangeFactory(listing=listing, start_date=start, end_date=end)
+        results = client.get(reverse('listings:list'), {
+            'from_date': start.isoformat(), 'to_date': end.isoformat(),
+        }).context['listings']
+        assert listing.title not in [l.title for l in results]
+
+    def test_date_filter_invalid_dates_ignored(self, client):
+        listing = ListingFactory()
+        response = client.get(reverse('listings:list'), {'from_date': 'bad', 'to_date': 'bad'})
+        assert response.status_code == 200
+        assert listing.title in [l.title for l in response.context['listings']]
+
 
 class TestListingDetailView:
     def test_accessible_to_logged_out(self, client):
@@ -66,6 +105,24 @@ class TestListingDetailView:
     def test_inactive_listing_returns_404(self, client):
         listing = ListingFactory(is_active=False)
         assert client.get(listing.get_absolute_url()).status_code == 404
+
+    def test_confirmed_bookings_shown_in_availability(self, client):
+        from bookings.models import Booking
+        from bookings.tests.factories import BookingFactory
+        listing = ListingFactory()
+        start = today() + delta(7)
+        end = today() + delta(9)
+        BookingFactory(listing=listing, status=Booking.CONFIRMED, start_date=start, end_date=end)
+        response = client.get(listing.get_absolute_url())
+        assert start in [b.start_date for b in response.context['booked_dates']]
+
+    def test_pending_bookings_not_shown_in_availability(self, client):
+        from bookings.models import Booking
+        from bookings.tests.factories import BookingFactory
+        listing = ListingFactory()
+        BookingFactory(listing=listing, status=Booking.PENDING)
+        response = client.get(listing.get_absolute_url())
+        assert len(response.context['booked_dates']) == 0
 
 
 class TestListingCreateView:

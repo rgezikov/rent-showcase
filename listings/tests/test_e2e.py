@@ -1,4 +1,8 @@
+import datetime
 import pytest
+
+today = datetime.date.today
+delta = datetime.timedelta
 
 
 def _login(page, base_url, email, password='testpass123'):
@@ -77,6 +81,28 @@ def test_logged_out_sees_no_owner_contact(page, live_server):
 
     assert page.get_by_role('main').get_by_role('link', name='Log in').is_visible()
     assert not page.locator('text=Edit').is_visible()
+
+
+@pytest.mark.django_db(transaction=True)
+@pytest.mark.e2e
+def test_date_filter_excludes_booked_listing(page, live_server):
+    from bookings.models import Booking
+    from bookings.tests.factories import BookingFactory
+    from listings.tests.factories import ListingFactory
+
+    start = today() + delta(7)
+    end = today() + delta(9)
+    booked = ListingFactory(title='Booked Drill', quantity=1)
+    available = ListingFactory(title='Free Hammer')
+    BookingFactory(listing=booked, status=Booking.CONFIRMED, start_date=start, end_date=end, quantity=1)
+
+    page.goto(f'{live_server.url}/listings/')
+    page.evaluate(f"document.querySelector('input[name=from_date]')._flatpickr.setDate('{start.isoformat()}')")
+    page.evaluate(f"document.querySelector('input[name=to_date]')._flatpickr.setDate('{end.isoformat()}')")
+    page.get_by_role('button', name='Search').click()
+
+    assert page.locator('text=Free Hammer').is_visible()
+    assert not page.locator('text=Booked Drill').is_visible()
 
 
 @pytest.mark.django_db(transaction=True)
