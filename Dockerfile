@@ -38,6 +38,7 @@ RUN uv sync
 # Stage 3: Development target
 # ============================================================
 FROM base AS dev
+RUN uv run playwright install --with-deps chromium
 CMD ["uv", "run", "python", "manage.py", "runserver", "0.0.0.0:8000"]
 
 # ============================================================

@@ -16,8 +16,19 @@ dev = [
     "django-browser-reload>=1.17",
     "pytest-django>=4.9",
     "factory-boy>=3.3",
+    "pytest-playwright>=0.6",
+    "pytest-xdist>=3.6",
 ]
 
 [tool.pytest.ini_options]
-DJANGO_SETTINGS_MODULE = "config.settings.dev"
-python_files = ["tests.py", "test_*.py"]
+DJANGO_SETTINGS_MODULE = "config.settings.test"
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "-v --reuse-db"
+filterwarnings = [
+    "ignore::DeprecationWarning:factory",
+]
+markers = [
+    "e2e: end-to-end browser tests (skip with: -m 'not e2e')",
+]
