@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Delete listing" %} — Rent Showcase{% endblock %}
+
+{% block content %}
+<div class="max-w-md mx-auto px-4 py-16 text-center">
+  <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-6">
+    <svg class="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M12 9v2m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/>
+    </svg>
+  </div>
+  <h1 class="text-2xl font-bold text-gray-900 mb-2">{% trans "Delete listing?" %}</h1>
+  <p class="text-gray-600 mb-2 font-medium">{{ listing.title }}</p>
+  <p class="text-gray-500 text-sm mb-8">{% trans "This will permanently delete this listing and all its photos. This cannot be undone." %}</p>
+  <div class="flex justify-center gap-4">
+    <form method="post">
+      {% csrf_token %}
+      <button type="submit"
+              class="bg-red-600 text-white py-2 px-6 rounded-md hover:bg-red-700 font-medium text-sm">
+        {% trans "Yes, delete" %}
+      </button>
+    </form>
+    <a href="{{ listing.get_absolute_url }}"
+       class="py-2 px-6 rounded-md border border-gray-300 text-sm text-gray-700 hover:bg-gray-50">
+      {% trans "Cancel" %}
+    </a>
+  </div>
+</div>
+{% endblock %}

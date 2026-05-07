@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Browse Equipment" %} — Rent Showcase{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+
+  <div class="flex items-center justify-between mb-6">
+    <h1 class="text-2xl font-bold text-gray-900">{% trans "Browse Equipment" %}</h1>
+    {% if user.is_authenticated %}
+      <a href="{% url 'listings:create' %}"
+         class="text-sm bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 font-medium">
+        {% trans "List your equipment" %}
+      </a>
+    {% endif %}
+  </div>
+
+  <!-- Search & filters -->
+  <form method="get" class="bg-white rounded-lg border border-gray-200 p-4 mb-8">
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+      <input type="text" name="q" value="{{ query }}"
+             placeholder="{% trans 'Search...' %}"
+             class="rounded-md border-gray-300 text-sm w-full">
+      <select name="category" class="rounded-md border-gray-300 text-sm w-full">
+        <option value="">{% trans "All categories" %}</option>
+        {% for cat in categories %}
+          <option value="{{ cat.slug }}" {% if cat.slug == selected_category %}selected{% endif %}>
+            {{ cat.name }}
+          </option>
+        {% endfor %}
+      </select>
+      <div class="flex gap-2">
+        <input type="text" name="location" value="{{ selected_location }}"
+               placeholder="{% trans 'Location' %}"
+               class="rounded-md border-gray-300 text-sm flex-1">
+        <button type="submit"
+                class="bg-blue-600 text-white px-4 py-2 rounded-md text-sm hover:bg-blue-700 shrink-0">
+          {% trans "Search" %}
+        </button>
+      </div>
+    </div>
+  </form>
+
+  <!-- Results -->
+  {% if listings %}
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {% for listing in listings %}
+        <a href="{{ listing.get_absolute_url }}"
+           class="bg-white rounded-lg border border-gray-200 overflow-hidden hover:shadow-md transition-shadow">
+          <!-- Photo -->
+          <div class="aspect-video bg-gray-100 flex items-center justify-center overflow-hidden">
+            {% if listing.cover_photo %}
+              <img src="{{ listing.cover_photo.image.url }}"
+                   class="w-full h-full object-contain" alt="{{ listing.title }}">
+            {% else %}
+              <svg class="w-12 h-12 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                      d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+              </svg>
+            {% endif %}
+          </div>
+          <!-- Info -->
+          <div class="p-4">
+            <p class="text-xs text-gray-400 mb-1">{{ listing.category.name }}</p>
+            <h2 class="text-sm font-semibold text-gray-900 truncate">{{ listing.title }}</h2>
+            <p class="text-xs text-gray-500 mt-1">{{ listing.location }}</p>
+            <p class="text-sm font-medium text-blue-600 mt-2">
+              {{ listing.price_per_day }} € / {% trans "day" %}
+            </p>
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="text-center py-20 text-gray-400">
+      <p class="text-lg">{% trans "No listings found." %}</p>
+      {% if query or selected_category or selected_location %}
+        <a href="{% url 'listings:list' %}" class="text-sm text-blue-600 hover:underline mt-2 block">
+          {% trans "Clear filters" %}
+        </a>
+      {% endif %}
+    </div>
+  {% endif %}
+</div>
+{% endblock %}

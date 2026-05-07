@@ -1,0 +1,11 @@
+[
+  {"model": "listings.category", "pk": 1,  "fields": {"name": "Construction & Tools",   "slug": "construction-tools"}},
+  {"model": "listings.category", "pk": 2,  "fields": {"name": "Audio/Visual & Events",  "slug": "av-events"}},
+  {"model": "listings.category", "pk": 3,  "fields": {"name": "Sports & Outdoors",       "slug": "sports-outdoors"}},
+  {"model": "listings.category", "pk": 4,  "fields": {"name": "Medical Equipment",       "slug": "medical"}},
+  {"model": "listings.category", "pk": 5,  "fields": {"name": "Vehicles & Transport",    "slug": "vehicles-transport"}},
+  {"model": "listings.category", "pk": 6,  "fields": {"name": "Garden & Landscaping",    "slug": "garden-landscaping"}},
+  {"model": "listings.category", "pk": 7,  "fields": {"name": "Photography & Film",      "slug": "photography-film"}},
+  {"model": "listings.category", "pk": 8,  "fields": {"name": "Electronics",             "slug": "electronics"}},
+  {"model": "listings.category", "pk": 9,  "fields": {"name": "Other",                   "slug": "other"}}
+]
