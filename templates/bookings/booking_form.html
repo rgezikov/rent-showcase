@@ -125,7 +125,7 @@
 
 {% block extra_js %}
 <script>
-  var unavailable = {{ unavailable_json }};
+  var unavailable = {{ unavailable_json|safe }};
   var pickerOpts = {
     dateFormat: 'Y-m-d',
     minDate: 'today',
