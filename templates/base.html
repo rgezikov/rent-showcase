@@ -167,17 +167,18 @@
   <script src="https://unpkg.com/htmx.org@1.9.12" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      document.querySelectorAll('input[placeholder="yyyy-mm-dd"]:not([data-fp-custom])').forEach(function (el) {
-        flatpickr(el, { dateFormat: 'Y-m-d', allowInput: true });
-      });
-    });
-  </script>
-  <script>
     document.getElementById('mobile-menu-btn').addEventListener('click', function () {
       document.getElementById('mobile-menu').classList.toggle('hidden');
     });
   </script>
   {% block extra_js %}{% endblock %}
+  <script>
+    /* Global fallback: init flatpickr on any date input not already initialised by a page block */
+    document.querySelectorAll('input[placeholder="yyyy-mm-dd"]').forEach(function (el) {
+      if (!el._flatpickr) {
+        flatpickr(el, { dateFormat: 'Y-m-d', allowInput: true });
+      }
+    });
+  </script>
 </body>
 </html>
