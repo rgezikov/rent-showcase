@@ -110,8 +110,6 @@ class TestProfileEditView:
         client.post(reverse('accounts:profile_edit'), {
             'first_name': 'New',
             'last_name': user.last_name,
-            'account_type': user.account_type,
-            'company_name': '',
         })
         user.refresh_from_db()
         assert user.first_name == 'New'

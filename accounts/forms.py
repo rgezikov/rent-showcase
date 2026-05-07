@@ -86,7 +86,7 @@ class EmailLoginForm(AuthenticationForm):
 class ProfileEditForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'account_type', 'company_name',
+        fields = ['first_name', 'last_name', 'company_name',
                   'phone', 'location', 'avatar', 'bio']
 
     def __init__(self, *args, **kwargs):
@@ -94,9 +94,3 @@ class ProfileEditForm(forms.ModelForm):
         for field in self.fields.values():
             field.widget.attrs.update(WIDGET_CLASS)
         self.fields['company_name'].required = False
-
-    def clean(self):
-        cleaned_data = super().clean()
-        if cleaned_data.get('account_type') == User.COMPANY and not cleaned_data.get('company_name'):
-            self.add_error('company_name', _('Company name is required for company accounts.'))
-        return cleaned_data
