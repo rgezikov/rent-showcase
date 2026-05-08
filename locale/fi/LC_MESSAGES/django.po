@@ -1,0 +1,1059 @@
+# Finnish translations for Rent Showcase
+# Copyright (C) 2026
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Rent Showcase 0.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-05-08 10:56+0300\n"
+"PO-Revision-Date: 2026-05-08 00:00+0300\n"
+"Language: fi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: accounts/admin.py:7
+msgid "Block selected users (prevent login)"
+msgstr "Estä valitut käyttäjät (estä kirjautuminen)"
+
+#: accounts/admin.py:11
+#, python-format
+msgid "%(n)d user blocked."
+msgid_plural "%(n)d users blocked."
+msgstr[0] "%(n)d käyttäjä estetty."
+msgstr[1] "%(n)d käyttäjää estetty."
+
+#: accounts/admin.py:15
+msgid "Unblock selected users"
+msgstr "Poista esto valituilta käyttäjiltä"
+
+#: accounts/admin.py:19
+#, python-format
+msgid "%(n)d user unblocked."
+msgid_plural "%(n)d users unblocked."
+msgstr[0] "%(n)d käyttäjän esto poistettu."
+msgstr[1] "%(n)d käyttäjän esto poistettu."
+
+#: accounts/admin.py:26 accounts/admin.py:29
+msgid "Profile"
+msgstr "Profiili"
+
+#: accounts/apps.py:8
+msgid "Accounts"
+msgstr "Käyttäjätilit"
+
+#: accounts/forms.py:11 accounts/forms.py:74
+msgid "Password"
+msgstr "Salasana"
+
+#: accounts/forms.py:15
+msgid "Confirm password"
+msgstr "Vahvista salasana"
+
+#: accounts/forms.py:36
+msgid "An account with this email already exists."
+msgstr "Tällä sähköpostiosoitteella on jo tili."
+
+#: accounts/forms.py:43
+msgid "Passwords do not match."
+msgstr "Salasanat eivät täsmää."
+
+#: accounts/forms.py:49
+msgid "Company name is required for company accounts."
+msgstr "Yrityksen nimi vaaditaan yritystileille."
+
+#: accounts/forms.py:70 templates/accounts/profile.html:62
+msgid "Email"
+msgstr "Sähköposti"
+
+#: accounts/forms.py:81
+msgid "Please verify your email address before logging in. Check your inbox."
+msgstr "Vahvista sähköpostiosoitteesi ennen kirjautumista. Tarkista sähköpostisi."
+
+#: accounts/models.py:10 templates/accounts/profile.html:33
+msgid "Person"
+msgstr "Henkilö"
+
+#: accounts/models.py:11 templates/accounts/profile.html:33
+#: templates/accounts/profile.html:73
+msgid "Company"
+msgstr "Yritys"
+
+#: accounts/models.py:14
+msgid "email address"
+msgstr "sähköpostiosoite"
+
+#: accounts/models.py:17
+msgid "account type"
+msgstr "tilityyppi"
+
+#: accounts/models.py:22
+msgid "company name"
+msgstr "yrityksen nimi"
+
+#: accounts/models.py:23
+msgid "phone"
+msgstr "puhelin"
+
+#: accounts/models.py:24 listings/models.py:35
+msgid "location"
+msgstr "sijainti"
+
+#: accounts/models.py:25
+msgid "avatar"
+msgstr "profiilikuva"
+
+#: accounts/models.py:26
+msgid "bio"
+msgstr "esittely"
+
+#: accounts/models.py:29
+msgid "user"
+msgstr "käyttäjä"
+
+#: accounts/models.py:30
+msgid "users"
+msgstr "käyttäjät"
+
+#: accounts/models.py:48
+msgid "registration open"
+msgstr "rekisteröinti auki"
+
+#: accounts/models.py:50
+msgid "Uncheck to prevent new user registrations."
+msgstr "Poista valinta estääksesi uusien käyttäjien rekisteröinnin."
+
+#: accounts/models.py:54 accounts/models.py:55
+msgid "site settings"
+msgstr "sivuston asetukset"
+
+#: accounts/views.py:59
+msgid "The verification link has expired. Please register again."
+msgstr "Vahvistuslinkki on vanhentunut. Rekisteröidy uudelleen."
+
+#: accounts/views.py:62
+msgid "Invalid verification link."
+msgstr "Virheellinen vahvistuslinkki."
+
+#: accounts/views.py:69
+msgid "Email verified! You can now log in."
+msgstr "Sähköposti vahvistettu! Voit nyt kirjautua sisään."
+
+#: accounts/views.py:94
+msgid "Profile updated."
+msgstr "Profiili päivitetty."
+
+#: accounts/views.py:107
+msgid "Your account has been deleted."
+msgstr "Tilisi on poistettu."
+
+#: bookings/forms.py:40 listings/forms.py:82
+msgid "End date must be on or after start date."
+msgstr "Loppupäivän on oltava alkupäivän jälkeen tai sama päivä."
+
+#: bookings/forms.py:42
+msgid "Start date cannot be in the past."
+msgstr "Alkupäivä ei voi olla menneisyydessä."
+
+#: bookings/forms.py:44
+msgid "The requested dates are not available for this listing."
+msgstr "Pyytämäsi päivät eivät ole saatavilla tässä ilmoituksessa."
+
+#: bookings/models.py:18 templates/bookings/booking_requests.html:11
+#: templates/bookings/booking_requests.html:29
+msgid "Pending"
+msgstr "Odottaa"
+
+#: bookings/models.py:19 templates/bookings/booking_requests.html:55
+msgid "Confirmed"
+msgstr "Vahvistettu"
+
+#: bookings/models.py:20
+msgid "Rejected"
+msgstr "Hylätty"
+
+#: bookings/models.py:21
+msgid "Cancelled"
+msgstr "Peruutettu"
+
+#: bookings/models.py:22
+msgid "Completed"
+msgstr "Valmis"
+
+#: bookings/models.py:29 listings/models.py:53 listings/models.py:73
+#: listings/models.py:90
+msgid "listing"
+msgstr "ilmoitus"
+
+#: bookings/models.py:35
+msgid "renter"
+msgstr "vuokraaja"
+
+#: bookings/models.py:37 listings/models.py:92
+msgid "start date"
+msgstr "alkupäivä"
+
+#: bookings/models.py:38 listings/models.py:93
+msgid "end date"
+msgstr "loppupäivä"
+
+#: bookings/models.py:39 listings/models.py:44
+msgid "quantity"
+msgstr "määrä"
+
+#: bookings/models.py:40
+msgid "note"
+msgstr "lisätieto"
+
+#: bookings/models.py:42
+msgid "status"
+msgstr "tila"
+
+#: bookings/models.py:45
+msgid "total price"
+msgstr "kokonaishinta"
+
+#: bookings/models.py:51 messaging/models.py:11 notifications/models.py:32
+msgid "booking"
+msgstr "varaus"
+
+#: bookings/models.py:52
+msgid "bookings"
+msgstr "varaukset"
+
+#: bookings/views.py:20
+msgid "You cannot book your own listing."
+msgstr "Et voi varata omaa ilmoitustasi."
+
+#: bookings/views.py:39
+msgid "Booking confirmed automatically."
+msgstr "Varaus vahvistettu automaattisesti."
+
+#: bookings/views.py:43
+msgid "Booking request sent. The owner will respond shortly."
+msgstr "Varauspyyntö lähetetty. Omistaja vastaa pian."
+
+#: bookings/views.py:84
+msgid "Booking confirmed."
+msgstr "Varaus vahvistettu."
+
+#: bookings/views.py:96
+msgid "Booking rejected."
+msgstr "Varaus hylätty."
+
+#: bookings/views.py:120
+msgid "Booking cancelled."
+msgstr "Varaus peruutettu."
+
+#: listings/admin.py:16
+msgid "Deactivate selected listings"
+msgstr "Poista valitut ilmoitukset käytöstä"
+
+#: listings/admin.py:20
+#, python-format
+msgid "%(n)d listing deactivated."
+msgid_plural "%(n)d listings deactivated."
+msgstr[0] "%(n)d ilmoitus poistettu käytöstä."
+msgstr[1] "%(n)d ilmoitusta poistettu käytöstä."
+
+#: listings/admin.py:24
+msgid "Activate selected listings"
+msgstr "Aktivoi valitut ilmoitukset"
+
+#: listings/admin.py:28
+#, python-format
+msgid "%(n)d listing activated."
+msgid_plural "%(n)d listings activated."
+msgstr[0] "%(n)d ilmoitus aktivoitu."
+msgstr[1] "%(n)d ilmoitusta aktivoitu."
+
+#: listings/forms.py:35
+msgid "Please provide a message to send when auto-accepting bookings."
+msgstr "Anna viesti, joka lähetetään automaattisen hyväksynnän yhteydessä."
+
+#: listings/forms.py:65 templates/listings/listing_form.html:164
+msgid "Photos"
+msgstr "Kuvat"
+
+#: listings/models.py:8
+msgid "name"
+msgstr "nimi"
+
+#: listings/models.py:12 listings/models.py:33
+msgid "category"
+msgstr "kategoria"
+
+#: listings/models.py:13
+msgid "categories"
+msgstr "kategoriat"
+
+#: listings/models.py:25
+msgid "owner"
+msgstr "omistaja"
+
+#: listings/models.py:27
+msgid "title"
+msgstr "otsikko"
+
+#: listings/models.py:28
+msgid "description"
+msgstr "kuvaus"
+
+#: listings/models.py:37
+msgid "price per day"
+msgstr "päivähinta"
+
+#: listings/models.py:38
+msgid "price per weekend"
+msgstr "viikonloppuhinta"
+
+#: listings/models.py:39
+msgid "price per week"
+msgstr "viikkohinta"
+
+#: listings/models.py:40
+msgid "price per month"
+msgstr "kuukausihinta"
+
+#: listings/models.py:41
+msgid "base fee"
+msgstr "perusmaksu"
+
+#: listings/models.py:42
+msgid "preferred payment methods"
+msgstr "maksutavat"
+
+#: listings/models.py:45
+msgid "auto-accept bookings"
+msgstr "automaattinen varausten hyväksyntä"
+
+#: listings/models.py:46
+msgid "auto-accept message"
+msgstr "automaattisen hyväksynnän viesti"
+
+#: listings/models.py:48
+msgid "active"
+msgstr "aktiivinen"
+
+#: listings/models.py:54
+msgid "listings"
+msgstr "ilmoitukset"
+
+#: listings/models.py:75
+msgid "image"
+msgstr "kuva"
+
+#: listings/models.py:76
+msgid "order"
+msgstr "järjestys"
+
+#: listings/views.py:99
+msgid "Listing created."
+msgstr "Ilmoitus luotu."
+
+#: listings/views.py:107
+msgid "Create listing"
+msgstr "Luo ilmoitus"
+
+#: listings/views.py:120
+msgid "Listing updated."
+msgstr "Ilmoitus päivitetty."
+
+#: listings/views.py:129
+msgid "Edit listing"
+msgstr "Muokkaa ilmoitusta"
+
+#: listings/views.py:138
+msgid "Listing deleted."
+msgstr "Ilmoitus poistettu."
+
+#: listings/views.py:149
+msgid "activated"
+msgstr "aktivoitu"
+
+#: listings/views.py:149
+msgid "deactivated"
+msgstr "poistettu käytöstä"
+
+#: listings/views.py:179
+msgid "Dates blocked."
+msgstr "Päivät estetty."
+
+#: messaging/forms.py:14
+msgid "Write a message…"
+msgstr "Kirjoita viesti…"
+
+#: messaging/models.py:19
+msgid "sender"
+msgstr "lähettäjä"
+
+#: messaging/models.py:21
+msgid "message"
+msgstr "viesti"
+
+#: notifications/models.py:14
+msgid "New booking request"
+msgstr "Uusi varauspyyntö"
+
+#: notifications/models.py:15
+msgid "Booking confirmed"
+msgstr "Varaus vahvistettu"
+
+#: notifications/models.py:16
+msgid "Booking rejected"
+msgstr "Varaus hylätty"
+
+#: notifications/models.py:17
+msgid "Booking cancelled"
+msgstr "Varaus peruutettu"
+
+#: notifications/models.py:18
+msgid "New message"
+msgstr "Uusi viesti"
+
+#: notifications/models.py:25
+msgid "recipient"
+msgstr "vastaanottaja"
+
+#: notifications/models.py:27
+msgid "event type"
+msgstr "tapahtumatyyppi"
+
+#: notifications/models.py:34
+msgid "read"
+msgstr "luettu"
+
+#: notifications/models.py:39
+msgid "notification"
+msgstr "ilmoitus"
+
+#: notifications/models.py:40
+msgid "notifications"
+msgstr "ilmoitukset"
+
+#: notifications/models.py:49
+#, python-format
+msgid "New booking request for \"%(title)s\" from %(name)s"
+msgstr "Uusi varauspyyntö ilmoitukselle \"%(title)s\" käyttäjältä %(name)s"
+
+#: notifications/models.py:51
+#, python-format
+msgid "Your booking for \"%(title)s\" was confirmed"
+msgstr "Varauksesi ilmoitukselle \"%(title)s\" on vahvistettu"
+
+#: notifications/models.py:53
+#, python-format
+msgid "Your booking for \"%(title)s\" was rejected"
+msgstr "Varauksesi ilmoitukselle \"%(title)s\" on hylätty"
+
+#: notifications/models.py:55
+#, python-format
+msgid "Booking for \"%(title)s\" was cancelled"
+msgstr "Varaus ilmoitukselle \"%(title)s\" on peruutettu"
+
+#: notifications/models.py:57
+#, python-format
+msgid "New message in your booking for \"%(title)s\""
+msgstr "Uusi viesti varauksessasi ilmoitukselle \"%(title)s\""
+
+#: templates/accounts/account_delete_confirm.html:4
+#: templates/accounts/profile.html:89
+msgid "Delete account"
+msgstr "Poista tili"
+
+#: templates/accounts/account_delete_confirm.html:14
+msgid "Delete your account?"
+msgstr "Poistetaanko tilisi?"
+
+#: templates/accounts/account_delete_confirm.html:16
+msgid ""
+"This will permanently delete your account and all associated data. This "
+"action cannot be undone."
+msgstr ""
+"Tämä poistaa tilisi ja kaikki siihen liittyvät tiedot pysyvästi. "
+"Toimintoa ei voi kumota."
+
+#: templates/accounts/account_delete_confirm.html:23
+msgid "Yes, delete my account"
+msgstr "Kyllä, poista tilini"
+
+#: templates/accounts/account_delete_confirm.html:28
+#: templates/accounts/profile_edit.html:95
+#: templates/bookings/booking_form.html:74
+#: templates/listings/listing_delete_confirm.html:27
+#: templates/listings/listing_form.html:199
+#: templates/listings/listing_form.html:204
+msgid "Cancel"
+msgstr "Peruuta"
+
+#: templates/accounts/login.html:4 templates/accounts/login.html:9
+#: templates/accounts/login.html:49 templates/accounts/register.html:12
+#: templates/base.html:76 templates/base.html:112
+#: templates/listings/listing_detail.html:204
+msgid "Log in"
+msgstr "Kirjaudu sisään"
+
+#: templates/accounts/login.html:11
+msgid "Don't have an account?"
+msgstr "Ei tiliä?"
+
+#: templates/accounts/login.html:12 templates/accounts/register.html:4
+#: templates/base.html:79 templates/base.html:113
+msgid "Register"
+msgstr "Rekisteröidy"
+
+#: templates/accounts/profile.html:42
+msgid "Member since"
+msgstr "Jäsen alkaen"
+
+#: templates/accounts/profile.html:54 templates/accounts/profile_edit.html:4
+#: templates/accounts/profile_edit.html:9
+msgid "Edit profile"
+msgstr "Muokkaa profiilia"
+
+#: templates/accounts/profile.html:67
+msgid "Phone"
+msgstr "Puhelin"
+
+#: templates/accounts/profile.html:82
+msgid "Active listings"
+msgstr "Aktiiviset ilmoitukset"
+
+#: templates/accounts/profile.html:83
+msgid "No listings yet."
+msgstr "Ei vielä ilmoituksia."
+
+#: templates/accounts/profile.html:91
+msgid ""
+"Permanently deletes your account and all your data. This cannot be undone."
+msgstr ""
+"Poistaa tilisi ja kaikki tietosi pysyvästi. Tätä ei voi kumota."
+
+#: templates/accounts/profile.html:95
+msgid "Delete my account"
+msgstr "Poista tilini"
+
+#: templates/accounts/profile_edit.html:91
+msgid "Save changes"
+msgstr "Tallenna muutokset"
+
+#: templates/accounts/register.html:9
+msgid "Create an account"
+msgstr "Luo tili"
+
+#: templates/accounts/register.html:11
+msgid "Already have an account?"
+msgstr "Onko sinulla jo tili?"
+
+#: templates/accounts/register.html:120
+msgid "Create account"
+msgstr "Luo tili"
+
+#: templates/accounts/registration_closed.html:4
+msgid "Registration closed"
+msgstr "Rekisteröinti suljettu"
+
+#: templates/accounts/registration_closed.html:8
+msgid "Registration is currently closed"
+msgstr "Rekisteröinti on tällä hetkellä suljettu"
+
+#: templates/accounts/registration_closed.html:9
+msgid ""
+"New account registration is temporarily unavailable. Please check back later."
+msgstr ""
+"Uusien tilien rekisteröinti on tilapäisesti poissa käytöstä. "
+"Yritä myöhemmin uudelleen."
+
+#: templates/accounts/registration_closed.html:10
+msgid "Already have an account? Log in"
+msgstr "Onko sinulla jo tili? Kirjaudu sisään"
+
+#: templates/accounts/verify_email_sent.html:4
+msgid "Verify your email"
+msgstr "Vahvista sähköpostisi"
+
+#: templates/accounts/verify_email_sent.html:14
+msgid "Check your inbox"
+msgstr "Tarkista sähköpostisi"
+
+#: templates/accounts/verify_email_sent.html:16
+msgid ""
+"We've sent a verification link to your email address. Click the link to "
+"activate your account."
+msgstr ""
+"Olemme lähettäneet vahvistuslinkin sähköpostiisi. "
+"Klikkaa linkkiä aktivoidaksesi tilisi."
+
+#: templates/accounts/verify_email_sent.html:19
+msgid "Didn't receive it? Check your spam folder."
+msgstr "Eikö tullut? Tarkista roskapostikansio."
+
+#: templates/base.html:25 templates/base.html:96 templates/home.html:21
+#: templates/listings/listing_list.html:4
+#: templates/listings/listing_list.html:10
+msgid "Browse Equipment"
+msgstr "Selaa laitteita"
+
+#: templates/base.html:26 templates/base.html:97
+msgid "List Equipment"
+msgstr "Ilmoita laite"
+
+#: templates/base.html:61 templates/base.html:103
+#: templates/listings/my_listings.html:4 templates/listings/my_listings.html:10
+msgid "My Listings"
+msgstr "Omat ilmoitukset"
+
+#: templates/base.html:63 templates/base.html:104
+#: templates/bookings/my_bookings.html:4 templates/bookings/my_bookings.html:8
+msgid "My Bookings"
+msgstr "Omat varaukset"
+
+#: templates/base.html:65 templates/base.html:105
+msgid "Requests"
+msgstr "Varauspyynnöt"
+
+#: templates/base.html:73 templates/base.html:109
+msgid "Log out"
+msgstr "Kirjaudu ulos"
+
+#: templates/base.html:101 templates/notifications/notification_list.html:4
+#: templates/notifications/notification_list.html:10
+msgid "Notifications"
+msgstr "Ilmoitukset"
+
+#: templates/base.html:158
+msgid "About"
+msgstr "Tietoja"
+
+#: templates/base.html:159
+msgid "Help"
+msgstr "Ohje"
+
+#: templates/base.html:160
+msgid "Privacy Policy"
+msgstr "Tietosuojaseloste"
+
+#: templates/base.html:161
+msgid "Terms of Service"
+msgstr "Käyttöehdot"
+
+#: templates/bookings/booking_detail.html:4
+#: templates/bookings/booking_detail.html:18
+msgid "Booking"
+msgstr "Varaus"
+
+#: templates/bookings/booking_detail.html:35
+msgid "Listing"
+msgstr "Ilmoitus"
+
+#: templates/bookings/booking_detail.html:41
+#: templates/listings/listing_list.html:34
+msgid "Location"
+msgstr "Sijainti"
+
+#: templates/bookings/booking_detail.html:45
+msgid "Dates"
+msgstr "Päivät"
+
+#: templates/bookings/booking_detail.html:49
+#: templates/bookings/booking_form.html:50
+msgid "Quantity"
+msgstr "Määrä"
+
+#: templates/bookings/booking_detail.html:54
+msgid "Total price"
+msgstr "Kokonaishinta"
+
+#: templates/bookings/booking_detail.html:60
+msgid "Renter"
+msgstr "Vuokraaja"
+
+#: templates/bookings/booking_detail.html:70
+#: templates/listings/listing_detail.html:184
+msgid "Owner"
+msgstr "Omistaja"
+
+#: templates/bookings/booking_detail.html:82
+msgid "Note"
+msgstr "Lisätieto"
+
+#: templates/bookings/booking_detail.html:94
+msgid "Confirm"
+msgstr "Vahvista"
+
+#: templates/bookings/booking_detail.html:101
+msgid "Reject"
+msgstr "Hylkää"
+
+#: templates/bookings/booking_detail.html:112
+#: templates/bookings/booking_detail.html:125
+msgid "Cancel this booking?"
+msgstr "Peruutetaanko tämä varaus?"
+
+#: templates/bookings/booking_detail.html:114
+#: templates/bookings/booking_detail.html:127
+msgid "Cancel booking"
+msgstr "Peruuta varaus"
+
+#: templates/bookings/booking_detail.html:137
+msgid "Messages"
+msgstr "Viestit"
+
+#: templates/bookings/booking_detail.html:141
+msgid ""
+"Be cautious about sharing personal contact details with people you don't "
+"know."
+msgstr ""
+"Ole varovainen jakaessasi henkilökohtaisia yhteystietoja tuntemattomille."
+
+#: templates/bookings/booking_detail.html:151
+msgid "Auto-message"
+msgstr "Automaattiviesti"
+
+#: templates/bookings/booking_detail.html:163
+msgid "No messages yet."
+msgstr "Ei vielä viestejä."
+
+#: templates/bookings/booking_detail.html:173
+msgid "Send"
+msgstr "Lähetä"
+
+#: templates/bookings/booking_form.html:4
+#: templates/bookings/booking_form.html:17
+#: templates/listings/listing_detail.html:221
+msgid "Request booking"
+msgstr "Pyydä varausta"
+
+#: templates/bookings/booking_form.html:33
+msgid "Start date"
+msgstr "Alkupäivä"
+
+#: templates/bookings/booking_form.html:41
+msgid "End date"
+msgstr "Loppupäivä"
+
+#: templates/bookings/booking_form.html:50
+msgid "max"
+msgstr "enintään"
+
+#: templates/bookings/booking_form.html:61
+msgid "Note to owner"
+msgstr "Viesti omistajalle"
+
+#: templates/bookings/booking_form.html:61
+msgid "(optional)"
+msgstr "(valinnainen)"
+
+#: templates/bookings/booking_form.html:70
+msgid "Send request"
+msgstr "Lähetä pyyntö"
+
+#: templates/bookings/booking_form.html:87
+#: templates/listings/listing_detail.html:53
+msgid "Per day"
+msgstr "Päivässä"
+
+#: templates/bookings/booking_form.html:92
+#: templates/listings/listing_detail.html:56
+msgid "Per weekend"
+msgstr "Viikonloppu"
+
+#: templates/bookings/booking_form.html:98
+#: templates/listings/listing_detail.html:60
+msgid "Per week"
+msgstr "Viikossa"
+
+#: templates/bookings/booking_form.html:104
+#: templates/listings/listing_detail.html:64
+msgid "Per month"
+msgstr "Kuukaudessa"
+
+#: templates/bookings/booking_form.html:110
+#: templates/listings/listing_detail.html:68
+msgid "Base fee"
+msgstr "Perusmaksu"
+
+#: templates/bookings/booking_form.html:116
+#: templates/listings/listing_detail.html:74
+msgid "Payment"
+msgstr "Maksaminen"
+
+#: templates/bookings/booking_form.html:119
+msgid ""
+"This listing uses auto-accept — your booking will be confirmed immediately."
+msgstr ""
+"Tämä ilmoitus käyttää automaattista hyväksyntää — varauksesi vahvistetaan heti."
+
+#: templates/bookings/booking_requests.html:4
+#: templates/bookings/booking_requests.html:8
+msgid "Booking Requests"
+msgstr "Varauspyynnöt"
+
+#: templates/bookings/booking_requests.html:21
+#: templates/listings/listing_detail.html:120
+msgid "From"
+msgstr "Alkaen"
+
+#: templates/bookings/booking_requests.html:36
+msgid "No pending requests."
+msgstr "Ei odottavia pyyntöjä."
+
+#: templates/bookings/booking_requests.html:40
+msgid "Active bookings"
+msgstr "Aktiiviset varaukset"
+
+#: templates/bookings/booking_requests.html:50
+msgid "With"
+msgstr "Kanssa"
+
+#: templates/bookings/booking_requests.html:62
+msgid "No active bookings."
+msgstr "Ei aktiivisia varauksia."
+
+#: templates/bookings/my_bookings.html:39
+msgid "You haven't made any bookings yet."
+msgstr "Et ole vielä tehnyt varauksia."
+
+#: templates/bookings/my_bookings.html:42
+msgid "Browse equipment"
+msgstr "Selaa laitteita"
+
+#: templates/home.html:4
+msgid "Equipment Rental Marketplace"
+msgstr "Laitteiden vuokrausmarkkina"
+
+#: templates/home.html:12
+msgid "Rent equipment."
+msgstr "Vuokraa laitteita."
+
+#: templates/home.html:13
+msgid "Simply."
+msgstr "Yksinkertaisesti."
+
+#: templates/home.html:16
+msgid ""
+"Find equipment to rent from people and organisations near you, or list your "
+"own equipment and reach customers ready to rent."
+msgstr ""
+"Löydä vuokrattavia laitteita lähialueeltasi tai ilmoita omat laitteesi "
+"vuokralle ja tavoita asiakkaat."
+
+#: templates/home.html:25
+msgid "List Your Equipment"
+msgstr "Ilmoita laite vuokralle"
+
+#: templates/home.html:32
+msgid "How it works"
+msgstr "Miten se toimii"
+
+#: templates/home.html:39
+msgid "Find equipment"
+msgstr "Löydä laite"
+
+#: templates/home.html:40
+msgid "Browse listings by category or location and find what you need."
+msgstr "Selaa ilmoituksia kategorian tai sijainnin mukaan ja löydä tarvitsemasi."
+
+#: templates/home.html:47
+msgid "Request a booking"
+msgstr "Pyydä varausta"
+
+#: templates/home.html:48
+msgid "Select your dates, send a request, and wait for the owner to confirm."
+msgstr "Valitse päivät, lähetä pyyntö ja odota omistajan vahvistusta."
+
+#: templates/home.html:55
+msgid "Get renting"
+msgstr "Aloita vuokraus"
+
+#: templates/home.html:56
+msgid "Coordinate pickup and payment directly with the owner."
+msgstr "Sovi nouto ja maksaminen suoraan omistajan kanssa."
+
+#: templates/listings/listing_delete_confirm.html:4
+#: templates/listings/listing_detail.html:177
+msgid "Delete listing"
+msgstr "Poista ilmoitus"
+
+#: templates/listings/listing_delete_confirm.html:14
+msgid "Delete listing?"
+msgstr "Poistetaanko ilmoitus?"
+
+#: templates/listings/listing_delete_confirm.html:16
+msgid ""
+"This will permanently delete this listing and all its photos. This cannot be "
+"undone."
+msgstr ""
+"Tämä poistaa ilmoituksen ja kaikki sen kuvat pysyvästi. Tätä ei voi kumota."
+
+#: templates/listings/listing_delete_confirm.html:22
+msgid "Yes, delete"
+msgstr "Kyllä, poista"
+
+#: templates/listings/listing_detail.html:18
+msgid "Delete this photo?"
+msgstr "Poistetaanko tämä kuva?"
+
+#: templates/listings/listing_detail.html:51
+#: templates/listings/listing_form.html:60
+msgid "Pricing"
+msgstr "Hinnoittelu"
+
+#: templates/listings/listing_detail.html:81
+msgid "Availability"
+msgstr "Saatavuus"
+
+#: templates/listings/listing_detail.html:84
+msgid "Booked"
+msgstr "Varattu"
+
+#: templates/listings/listing_detail.html:95
+msgid "Blocked by owner"
+msgstr "Omistajan estämä"
+
+#: templates/listings/listing_detail.html:103
+msgid "Remove"
+msgstr "Poista"
+
+#: templates/listings/listing_detail.html:112
+msgid "All dates available."
+msgstr "Kaikki päivät saatavilla."
+
+#: templates/listings/listing_detail.html:124
+msgid "To"
+msgstr "Päättyen"
+
+#: templates/listings/listing_detail.html:129
+msgid "Block dates"
+msgstr "Estä päivät"
+
+#: templates/listings/listing_detail.html:139
+#: templates/listings/listing_form.html:187
+msgid "Add photos"
+msgstr "Lisää kuvia"
+
+#: templates/listings/listing_detail.html:147
+msgid "Upload"
+msgstr "Lataa"
+
+#: templates/listings/listing_detail.html:161
+msgid "Manage listing"
+msgstr "Hallitse ilmoitusta"
+
+#: templates/listings/listing_detail.html:164
+#: templates/listings/my_listings.html:54
+msgid "Edit"
+msgstr "Muokkaa"
+
+#: templates/listings/listing_detail.html:172
+#: templates/listings/my_listings.html:62
+msgid "Deactivate"
+msgstr "Poista käytöstä"
+
+#: templates/listings/listing_detail.html:172
+#: templates/listings/my_listings.html:62
+msgid "Activate"
+msgstr "Aktivoi"
+
+#: templates/listings/listing_detail.html:200
+msgid "Log in to see owner details and make a booking."
+msgstr "Kirjaudu sisään nähdäksesi omistajan tiedot ja tehdäksesi varauksen."
+
+#: templates/listings/listing_detail.html:212
+#: templates/listings/listing_list.html:75
+#: templates/listings/my_listings.html:47
+msgid "day"
+msgstr "päivä"
+
+#: templates/listings/listing_detail.html:214
+msgid "units available"
+msgstr "saatavilla"
+
+#: templates/listings/listing_detail.html:217
+msgid "Auto-accept enabled"
+msgstr "Automaattinen hyväksyntä käytössä"
+
+#: templates/listings/listing_form.html:23
+msgid "Basic information"
+msgstr "Perustiedot"
+
+#: templates/listings/listing_form.html:125
+msgid "e.g. cash, bank transfer"
+msgstr "esim. käteinen, pankkisiirto"
+
+#: templates/listings/listing_form.html:131
+msgid "Options"
+msgstr "Asetukset"
+
+#: templates/listings/listing_form.html:146
+msgid "Booking requests will be confirmed automatically."
+msgstr "Varauspyynnöt vahvistetaan automaattisesti."
+
+#: templates/listings/listing_form.html:158
+msgid "Sent automatically to the renter when the booking is accepted."
+msgstr "Lähetetään automaattisesti vuokraajalle varauksen hyväksynnän yhteydessä."
+
+#: templates/listings/listing_list.html:14
+msgid "List your equipment"
+msgstr "Ilmoita laite vuokralle"
+
+#: templates/listings/listing_list.html:23
+msgid "Search..."
+msgstr "Hae..."
+
+#: templates/listings/listing_list.html:26
+msgid "All categories"
+msgstr "Kaikki kategoriat"
+
+#: templates/listings/listing_list.html:37
+msgid "Available from (yyyy-mm-dd)"
+msgstr "Saatavilla alkaen (vvvv-kk-pp)"
+
+#: templates/listings/listing_list.html:41
+msgid "Available to (yyyy-mm-dd)"
+msgstr "Saatavilla päättyen (vvvv-kk-pp)"
+
+#: templates/listings/listing_list.html:45
+msgid "Search"
+msgstr "Hae"
+
+#: templates/listings/listing_list.html:83
+msgid "No listings found."
+msgstr "Ilmoituksia ei löydy."
+
+#: templates/listings/listing_list.html:86
+msgid "Clear filters"
+msgstr "Tyhjennä suodattimet"
+
+#: templates/listings/my_listings.html:13
+msgid "New listing"
+msgstr "Uusi ilmoitus"
+
+#: templates/listings/my_listings.html:43
+msgid "Active"
+msgstr "Aktiivinen"
+
+#: templates/listings/my_listings.html:43
+msgid "Inactive"
+msgstr "Ei aktiivinen"
+
+#: templates/listings/my_listings.html:67
+msgid "Delete"
+msgstr "Poista"
+
+#: templates/listings/my_listings.html:75
+msgid "You haven't listed any equipment yet."
+msgstr "Et ole vielä lisännyt laitteita vuokralle."
+
+#: templates/listings/my_listings.html:78
+msgid "Create your first listing"
+msgstr "Luo ensimmäinen ilmoituksesi"
+
+#: templates/notifications/notification_list.html:16
+msgid "Mark all as read"
+msgstr "Merkitse kaikki luetuiksi"
+
+#: templates/notifications/notification_list.html:47
+msgid "No notifications yet."
+msgstr "Ei vielä ilmoituksia."

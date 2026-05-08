@@ -78,7 +78,15 @@
 - User blocking/banning (`is_active = False`)
 - Listing moderation (deactivate/delete)
 
-## Phase 8: Static Pages & Legal
+## Phase 8: Translations
+→ *Tests: [DEV-TEST.md Phase 6](DEV-TEST.md#phase-6-translations)*
+
+- Mark all UI strings with `{% trans %}` / `gettext`
+- Finnish `.po` translation file (`locale/fi/`)
+- Language switcher functional
+- Verify all pages render correctly in both languages
+
+## Phase 9: Static Pages & Legal
 → *Tests: [DEV-TEST.md Phase 5](DEV-TEST.md#phase-5-administration--static-pages)*
 
 - About page (EN + FI)
@@ -87,14 +95,6 @@
 - Terms of service page (EN + FI)
 - Account deletion flow (triggered from profile settings)
 - Data retention: define and document policy
-
-## Phase 9: Translations
-→ *Tests: [DEV-TEST.md Phase 6](DEV-TEST.md#phase-6-translations)*
-
-- Mark all UI strings with `{% trans %}` / `gettext`
-- Finnish `.po` translation file (`locale/fi/`)
-- Language switcher functional
-- Verify all pages render correctly in both languages
 
 ## Phase 10: Server Setup
 - Provision Hetzner VPS (Ubuntu LTS)
