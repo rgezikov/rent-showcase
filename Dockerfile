@@ -24,6 +24,7 @@ ENV PYTHONUNBUFFERED=1 \
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     libpq-dev \
+    gettext \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
@@ -47,6 +48,8 @@ CMD ["uv", "run", "python", "manage.py", "runserver", "0.0.0.0:8000"]
 FROM base AS prod
 
 COPY --from=css-builder /app/static/css/output.css ./static/css/output.css
+
+RUN uv run python manage.py compilemessages
 
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
