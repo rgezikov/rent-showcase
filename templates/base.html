@@ -155,10 +155,10 @@
       <div class="flex flex-col md:flex-row justify-between items-center gap-4">
         <p class="text-sm text-gray-500">&copy; {% now "Y" %} Rent Showcase</p>
         <nav class="flex flex-wrap justify-center gap-4 text-sm text-gray-500">
-          <a href="#" class="hover:text-gray-900">{% trans "About" %}</a>
-          <a href="#" class="hover:text-gray-900">{% trans "Help" %}</a>
-          <a href="#" class="hover:text-gray-900">{% trans "Privacy Policy" %}</a>
-          <a href="#" class="hover:text-gray-900">{% trans "Terms of Service" %}</a>
+          <a href="{% url 'about' %}" class="hover:text-gray-900">{% trans "About" %}</a>
+          <a href="{% url 'help' %}" class="hover:text-gray-900">{% trans "Help" %}</a>
+          <a href="{% url 'privacy' %}" class="hover:text-gray-900">{% trans "Privacy Policy" %}</a>
+          <a href="{% url 'terms' %}" class="hover:text-gray-900">{% trans "Terms of Service" %}</a>
         </nav>
       </div>
     </div>

@@ -1,0 +1,153 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Terms of Service" %} — Rent Showcase{% endblock %}
+
+{% block content %}
+<div class="max-w-2xl mx-auto px-4 py-12">
+  {% get_current_language as lang %}
+
+  {% if lang == 'fi' %}
+
+  <h1 class="text-3xl font-bold text-gray-900 mb-2">Käyttöehdot</h1>
+  <p class="text-sm text-gray-400 mb-8">Päivitetty: toukokuu 2026</p>
+
+  <div class="space-y-8 text-gray-700">
+
+    <section>
+      <h2 class="text-lg font-semibold text-gray-900 mb-2">1. Palvelu</h2>
+      <p>
+        Rent Showcase on vertaislaitteiden vuokrausmarkkina, joka yhdistää vuokraajia ja laiteomistajia
+        Suomessa. Palvelu on tarkoitettu ainoastaan lailliseen, henkilökohtaiseen ja kaupalliseen käyttöön.
+      </p>
+    </section>
+
+    <section>
+      <h2 class="text-lg font-semibold text-gray-900 mb-2">2. Käyttäjätilit</h2>
+      <ul class="list-disc pl-6 space-y-1">
+        <li>Tilin luominen edellyttää voimassa olevan sähköpostiosoitteen.</li>
+        <li>Olet vastuussa tilin tunnistetietojen suojaamisesta.</li>
+        <li>Ilmoita luvattomasta käytöstä välittömästi osoitteeseen privacy@rent-showcase.fi.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2 class="text-lg font-semibold text-gray-900 mb-2">3. Vuokraussopimukset</h2>
+      <p>
+        Rent Showcase toimii ainoastaan alustana eikä ole osapuoli vuokraajien ja omistajien välisessä
+        sopimuksessa. Maksu, nouto, palautus ja vakuutus ovat osapuolten keskinäisellä vastuulla.
+        Palvelussa ei käsitellä maksuja.
+      </p>
+    </section>
+
+    <section>
+      <h2 class="text-lg font-semibold text-gray-900 mb-2">4. Kielletty sisältö</h2>
+      <ul class="list-disc pl-6 space-y-1">
+        <li>Laittomien tai vaarallisten tavaroiden ilmoittaminen on kielletty.</li>
+        <li>Harhaanjohtavat kuvaukset tai hinnoittelu on kielletty.</li>
+        <li>Muiden käyttäjien häirintä tai huijaaminen on kielletty.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2 class="text-lg font-semibold text-gray-900 mb-2">5. Vastuunrajoitus</h2>
+      <p>
+        Rent Showcase ei vastaa vuokraustapahtumiin liittyvistä vahingoista, menetyksistä tai
+        riidoista. Palvelu tarjotaan sellaisenaan ilman takuita saatavuudesta tai soveltuvuudesta.
+      </p>
+    </section>
+
+    <section>
+      <h2 class="text-lg font-semibold text-gray-900 mb-2">6. Tilin päättäminen</h2>
+      <p>
+        Voit poistaa tilisi milloin tahansa profiilisivulta. Pidätämme oikeuden keskeyttää tai
+        sulkea tilejä, jotka rikkovat näitä ehtoja.
+      </p>
+    </section>
+
+    <section>
+      <h2 class="text-lg font-semibold text-gray-900 mb-2">7. Sovellettava laki</h2>
+      <p>Näihin ehtoihin sovelletaan Suomen lakia. Mahdolliset riidat ratkaistaan Helsingin käräjäoikeudessa.</p>
+    </section>
+
+    <section>
+      <h2 class="text-lg font-semibold text-gray-900 mb-2">8. Yhteydenotot</h2>
+      <p>Käyttöehtoihin liittyvissä asioissa ota yhteyttä: privacy@rent-showcase.fi</p>
+    </section>
+
+  </div>
+
+  {% else %}
+
+  <h1 class="text-3xl font-bold text-gray-900 mb-2">Terms of Service</h1>
+  <p class="text-sm text-gray-400 mb-8">Last updated: May 2026</p>
+
+  <div class="space-y-8 text-gray-700">
+
+    <section>
+      <h2 class="text-lg font-semibold text-gray-900 mb-2">1. The service</h2>
+      <p>
+        Rent Showcase is a peer-to-peer equipment rental marketplace connecting renters and equipment
+        owners in Finland. The service is intended for lawful personal and commercial use only.
+      </p>
+    </section>
+
+    <section>
+      <h2 class="text-lg font-semibold text-gray-900 mb-2">2. User accounts</h2>
+      <ul class="list-disc pl-6 space-y-1">
+        <li>Creating an account requires a valid email address.</li>
+        <li>You are responsible for keeping your account credentials secure.</li>
+        <li>Report any unauthorised access immediately to privacy@rent-showcase.fi.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2 class="text-lg font-semibold text-gray-900 mb-2">3. Rental agreements</h2>
+      <p>
+        Rent Showcase acts as a platform only and is not a party to any agreement between renters and
+        owners. Payment, pickup, return, and insurance are the sole responsibility of the parties
+        involved. We do not process payments.
+      </p>
+    </section>
+
+    <section>
+      <h2 class="text-lg font-semibold text-gray-900 mb-2">4. Prohibited content</h2>
+      <ul class="list-disc pl-6 space-y-1">
+        <li>Listing illegal or dangerous items is prohibited.</li>
+        <li>Misleading descriptions or pricing is prohibited.</li>
+        <li>Harassing or defrauding other users is prohibited.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2 class="text-lg font-semibold text-gray-900 mb-2">5. Limitation of liability</h2>
+      <p>
+        Rent Showcase is not liable for any damages, losses, or disputes arising from rental
+        transactions. The service is provided as-is without warranties of availability or fitness
+        for a particular purpose.
+      </p>
+    </section>
+
+    <section>
+      <h2 class="text-lg font-semibold text-gray-900 mb-2">6. Account termination</h2>
+      <p>
+        You may delete your account at any time from the profile page. We reserve the right to
+        suspend or close accounts that violate these terms.
+      </p>
+    </section>
+
+    <section>
+      <h2 class="text-lg font-semibold text-gray-900 mb-2">7. Governing law</h2>
+      <p>These terms are governed by Finnish law. Any disputes shall be resolved in the Helsinki District Court.</p>
+    </section>
+
+    <section>
+      <h2 class="text-lg font-semibold text-gray-900 mb-2">8. Contact</h2>
+      <p>For questions about these terms contact: privacy@rent-showcase.fi</p>
+    </section>
+
+  </div>
+
+  {% endif %}
+</div>
+{% endblock %}

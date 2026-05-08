@@ -1,0 +1,141 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Help" %} — Rent Showcase{% endblock %}
+
+{% block content %}
+<div class="max-w-2xl mx-auto px-4 py-12">
+  {% get_current_language as lang %}
+
+  {% if lang == 'fi' %}
+
+  <h1 class="text-3xl font-bold text-gray-900 mb-8">Ohje</h1>
+
+  <div class="space-y-10 text-gray-700">
+
+    <section>
+      <h2 class="text-xl font-semibold text-gray-900 mb-4">Kuinka vuokrata laitteita</h2>
+      <ol class="list-decimal pl-6 space-y-3">
+        <li>
+          <strong>Etsi laite</strong> — selaa ilmoituksia kategorian, sijainnin tai hakusanan mukaan
+          sivulla <a href="{% url 'listings:list' %}" class="text-blue-600 hover:underline">Selaa laitteita</a>.
+        </li>
+        <li>
+          <strong>Tarkista saatavuus</strong> — ilmoituksen sivulla näet varattuna tai estetyinä merkityt päivät.
+        </li>
+        <li>
+          <strong>Lähetä varauspyyntö</strong> — valitse haluamasi päivät ja lähetä omistajalle pyyntö.
+          Voit liittää mukaan viestin.
+        </li>
+        <li>
+          <strong>Odota vahvistusta</strong> — omistaja vahvistaa tai hylkää pyynnön. Jos ilmoituksessa
+          on automaattinen hyväksyntä käytössä, varaus vahvistetaan heti.
+        </li>
+        <li>
+          <strong>Sovi käytännöistä</strong> — käytä varauksen viestiketjua sopiaksesi noudosta ja
+          maksamisesta suoraan omistajan kanssa.
+        </li>
+      </ol>
+    </section>
+
+    <section>
+      <h2 class="text-xl font-semibold text-gray-900 mb-4">Kuinka ilmoittaa laite vuokralle</h2>
+      <ol class="list-decimal pl-6 space-y-3">
+        <li>
+          <strong>Luo tili</strong> — rekisteröidy henkilö- tai yritystilinä.
+        </li>
+        <li>
+          <strong>Luo ilmoitus</strong> — lisää otsikko, kuvaus, hinnasto, valokuvat ja sijainti.
+          Voit asettaa päivä-, viikonloppu-, viikko- ja kuukausihinnan.
+        </li>
+        <li>
+          <strong>Hallitse saatavuutta</strong> — estä päivät, jolloin laite ei ole saatavilla.
+          Vahvistetut varaukset merkitään automaattisesti.
+        </li>
+        <li>
+          <strong>Vastaa varauspyyntöihin</strong> — vahvista tai hylkää pyyntöjä
+          <a href="{% url 'bookings:requests' %}" class="text-blue-600 hover:underline">Varauspyynnöt</a>-sivulta.
+          Voit myös ottaa käyttöön automaattisen hyväksynnän.
+        </li>
+        <li>
+          <strong>Sovi käytännöistä</strong> — kommunikoi vuokraajan kanssa varauksen viestiketjun kautta
+          ja sovi noudosta sekä maksamisesta.
+        </li>
+      </ol>
+    </section>
+
+    <section class="bg-amber-50 border border-amber-100 rounded-lg p-4 text-sm text-amber-800">
+      <strong>Huomio:</strong> Maksaminen tapahtuu osapuolten kesken suoraan. Rent Showcase ei
+      käsittele maksuja. Ole varovainen jakaessasi henkilökohtaisia yhteystietoja tuntemattomille.
+    </section>
+
+  </div>
+
+  {% else %}
+
+  <h1 class="text-3xl font-bold text-gray-900 mb-8">Help</h1>
+
+  <div class="space-y-10 text-gray-700">
+
+    <section>
+      <h2 class="text-xl font-semibold text-gray-900 mb-4">How to rent equipment</h2>
+      <ol class="list-decimal pl-6 space-y-3">
+        <li>
+          <strong>Find equipment</strong> — browse listings by category, location, or keyword on the
+          <a href="{% url 'listings:list' %}" class="text-blue-600 hover:underline">Browse Equipment</a> page.
+        </li>
+        <li>
+          <strong>Check availability</strong> — on the listing page, see which dates are already booked
+          or blocked by the owner.
+        </li>
+        <li>
+          <strong>Submit a booking request</strong> — select your dates and send the owner a request.
+          You can include an optional note.
+        </li>
+        <li>
+          <strong>Wait for confirmation</strong> — the owner will confirm or reject your request. If the
+          listing uses auto-accept, your booking is confirmed immediately.
+        </li>
+        <li>
+          <strong>Coordinate the details</strong> — use the booking message thread to arrange pickup and
+          payment directly with the owner.
+        </li>
+      </ol>
+    </section>
+
+    <section>
+      <h2 class="text-xl font-semibold text-gray-900 mb-4">How to list equipment for rent</h2>
+      <ol class="list-decimal pl-6 space-y-3">
+        <li>
+          <strong>Create an account</strong> — register as a person or company.
+        </li>
+        <li>
+          <strong>Create a listing</strong> — add a title, description, pricing, photos, and location.
+          You can set daily, weekend, weekly, and monthly rates.
+        </li>
+        <li>
+          <strong>Manage availability</strong> — block dates when the equipment is unavailable.
+          Confirmed bookings are marked automatically.
+        </li>
+        <li>
+          <strong>Respond to requests</strong> — confirm or reject incoming requests from the
+          <a href="{% url 'bookings:requests' %}" class="text-blue-600 hover:underline">Booking Requests</a> page.
+          You can also enable auto-accept to confirm all qualifying requests automatically.
+        </li>
+        <li>
+          <strong>Coordinate the details</strong> — communicate with your renter through the booking
+          message thread and arrange pickup and payment.
+        </li>
+      </ol>
+    </section>
+
+    <section class="bg-amber-50 border border-amber-100 rounded-lg p-4 text-sm text-amber-800">
+      <strong>Note:</strong> Payments happen directly between the parties — Rent Showcase does not
+      process payments. Be cautious about sharing personal contact details with people you don't know.
+    </section>
+
+  </div>
+
+  {% endif %}
+</div>
+{% endblock %}

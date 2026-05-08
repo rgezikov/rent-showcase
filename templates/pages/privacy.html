@@ -1,0 +1,177 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Privacy Policy" %} — Rent Showcase{% endblock %}
+
+{% block content %}
+<div class="max-w-2xl mx-auto px-4 py-12">
+  {% get_current_language as lang %}
+
+  {% if lang == 'fi' %}
+
+  <h1 class="text-3xl font-bold text-gray-900 mb-2">Tietosuojaseloste</h1>
+  <p class="text-sm text-gray-400 mb-8">Päivitetty: toukokuu 2026</p>
+
+  <div class="space-y-8 text-gray-700">
+
+    <section>
+      <h2 class="text-lg font-semibold text-gray-900 mb-2">Rekisterinpitäjä</h2>
+      <p>Rent Showcase. Tietosuoja-asioissa ota yhteyttä: privacy@rent-showcase.fi</p>
+    </section>
+
+    <section>
+      <h2 class="text-lg font-semibold text-gray-900 mb-2">Kerättävät tiedot</h2>
+      <ul class="list-disc pl-6 space-y-1">
+        <li>Nimi ja sähköpostiosoite (rekisteröinnin yhteydessä)</li>
+        <li>Puhelinnumero ja sijainti (valinnainen, profiilissa)</li>
+        <li>Yrityksen nimi (yritystilit)</li>
+        <li>Profiilivalokuva (valinnainen)</li>
+        <li>Ilmoitukset, varaukset ja viestit, jotka luot palvelussa</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2 class="text-lg font-semibold text-gray-900 mb-2">Käsittelyn peruste ja tarkoitus</h2>
+      <p>
+        Henkilötietoja käsitellään sopimuksen täyttämiseksi (GDPR art. 6(1)(b)) — tietojen avulla
+        voimme tarjota vuokrauspalvelun. Emme käytä tietoja suoramarkkinointiin ilman suostumustasi.
+      </p>
+    </section>
+
+    <section>
+      <h2 class="text-lg font-semibold text-gray-900 mb-2">Tietojen säilytys</h2>
+      <ul class="list-disc pl-6 space-y-1">
+        <li>Aktiiviset tilit: tiedot säilytetään tilin voimassaoloajan</li>
+        <li>Valmiit varaukset: anonymisoidaan 2 vuoden kuluttua</li>
+        <li>Käyttämättömät tilit: poistetaan 3 vuoden toimettomuuden jälkeen</li>
+        <li>Tilin poistaminen: kaikki henkilötiedot poistetaan välittömästi</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2 class="text-lg font-semibold text-gray-900 mb-2">Tietojen jakaminen</h2>
+      <p>
+        Emme myy tai luovuta henkilötietojasi kolmansille osapuolille kaupallisiin tarkoituksiin.
+        Kirjautuneet käyttäjät näkevät toistensa julkiset profiilitiedot palvelun sisällä.
+      </p>
+    </section>
+
+    <section>
+      <h2 class="text-lg font-semibold text-gray-900 mb-2">Tietojen sijainti</h2>
+      <p>Kaikki tiedot tallennetaan EU:n/ETA:n sisällä (Hetzner, Helsinki).</p>
+    </section>
+
+    <section>
+      <h2 class="text-lg font-semibold text-gray-900 mb-2">Rekisteröidyn oikeudet</h2>
+      <ul class="list-disc pl-6 space-y-1">
+        <li><strong>Tarkastusoikeus</strong> — voit tarkastella profiiliasi palvelussa</li>
+        <li><strong>Oikaiseminen</strong> — voit muokata profiiliasi asetuksissa</li>
+        <li><strong>Poisto</strong> — voit poistaa tilisi profiilisivulta</li>
+        <li><strong>Siirrettävyys</strong> — tarjolla tulevassa versiossa</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2 class="text-lg font-semibold text-gray-900 mb-2">Tietoturvaloukkaukset</h2>
+      <p>
+        Tietoturvaloukkauksista ilmoitetaan tietosuojavaltuutetulle 72 tunnin kuluessa
+        havaitsemisesta GDPR:n edellyttämällä tavalla.
+      </p>
+    </section>
+
+    <section>
+      <h2 class="text-lg font-semibold text-gray-900 mb-2">Valvontaviranomainen</h2>
+      <p>
+        Sinulla on oikeus tehdä valitus tietosuojavaltuutetulle:
+        <a href="https://tietosuoja.fi" class="text-blue-600 hover:underline" target="_blank" rel="noopener">tietosuoja.fi</a>
+      </p>
+    </section>
+
+  </div>
+
+  {% else %}
+
+  <h1 class="text-3xl font-bold text-gray-900 mb-2">Privacy Policy</h1>
+  <p class="text-sm text-gray-400 mb-8">Last updated: May 2026</p>
+
+  <div class="space-y-8 text-gray-700">
+
+    <section>
+      <h2 class="text-lg font-semibold text-gray-900 mb-2">Data controller</h2>
+      <p>Rent Showcase. For privacy enquiries contact: privacy@rent-showcase.fi</p>
+    </section>
+
+    <section>
+      <h2 class="text-lg font-semibold text-gray-900 mb-2">Data we collect</h2>
+      <ul class="list-disc pl-6 space-y-1">
+        <li>Name and email address (at registration)</li>
+        <li>Phone number and location (optional, on your profile)</li>
+        <li>Company name (company accounts)</li>
+        <li>Profile photo (optional)</li>
+        <li>Listings, bookings, and messages you create within the service</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2 class="text-lg font-semibold text-gray-900 mb-2">Legal basis and purpose</h2>
+      <p>
+        Personal data is processed on the basis of contract performance (GDPR Art. 6(1)(b)) —
+        we need the data to provide the rental marketplace service. We do not use your data for
+        direct marketing without your consent.
+      </p>
+    </section>
+
+    <section>
+      <h2 class="text-lg font-semibold text-gray-900 mb-2">Data retention</h2>
+      <ul class="list-disc pl-6 space-y-1">
+        <li>Active accounts: data retained for the lifetime of the account</li>
+        <li>Completed bookings: anonymised after 2 years</li>
+        <li>Inactive accounts: deleted after 3 years of inactivity</li>
+        <li>Account deletion: all personal data erased immediately on request</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2 class="text-lg font-semibold text-gray-900 mb-2">Data sharing</h2>
+      <p>
+        We do not sell or share your personal data with third parties for commercial purposes.
+        Logged-in users can see each other's public profile information within the service.
+      </p>
+    </section>
+
+    <section>
+      <h2 class="text-lg font-semibold text-gray-900 mb-2">Data location</h2>
+      <p>All data is stored within the EU/EEA (Hetzner, Helsinki).</p>
+    </section>
+
+    <section>
+      <h2 class="text-lg font-semibold text-gray-900 mb-2">Your rights</h2>
+      <ul class="list-disc pl-6 space-y-1">
+        <li><strong>Access</strong> — view your profile and data in the service</li>
+        <li><strong>Rectification</strong> — edit your profile in settings</li>
+        <li><strong>Erasure</strong> — delete your account from the profile page</li>
+        <li><strong>Portability</strong> — available in a future release</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2 class="text-lg font-semibold text-gray-900 mb-2">Data breach notification</h2>
+      <p>
+        Personal data breaches will be reported to the supervisory authority within 72 hours of
+        discovery, as required by GDPR.
+      </p>
+    </section>
+
+    <section>
+      <h2 class="text-lg font-semibold text-gray-900 mb-2">Supervisory authority</h2>
+      <p>
+        You have the right to lodge a complaint with the Office of the Data Protection Ombudsman:
+        <a href="https://tietosuoja.fi" class="text-blue-600 hover:underline" target="_blank" rel="noopener">tietosuoja.fi</a>
+      </p>
+    </section>
+
+  </div>
+
+  {% endif %}
+</div>
+{% endblock %}

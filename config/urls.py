@@ -13,6 +13,10 @@ urlpatterns = [
     path('messaging/', include('messaging.urls', namespace='messaging')),
     path('notifications/', include('notifications.urls', namespace='notifications')),
     path('', TemplateView.as_view(template_name='home.html'), name='home'),
+    path('about/', TemplateView.as_view(template_name='pages/about.html'), name='about'),
+    path('help/', TemplateView.as_view(template_name='pages/help.html'), name='help'),
+    path('privacy/', TemplateView.as_view(template_name='pages/privacy.html'), name='privacy'),
+    path('terms/', TemplateView.as_view(template_name='pages/terms.html'), name='terms'),
 ]
 
 if settings.DEBUG:

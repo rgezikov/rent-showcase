@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "About" %} — Rent Showcase{% endblock %}
+
+{% block content %}
+<div class="max-w-2xl mx-auto px-4 py-12">
+  {% get_current_language as lang %}
+
+  {% if lang == 'fi' %}
+
+  <h1 class="text-3xl font-bold text-gray-900 mb-6">Tietoja Rent Showcase -palvelusta</h1>
+
+  <div class="prose prose-gray max-w-none space-y-6 text-gray-700">
+    <p>
+      Rent Showcase on vertaislaitteiden vuokrausmarkkina, joka yhdistää ihmiset ja organisaatiot
+      Suomessa. Olitpa etsimässä porakonetta viikonloppuprojektiin, kameraa kuvaukseen tai
+      erikoislääkintälaitteita — Rent Showcase tekee löytämisestä ja vuokraamisesta helppoa
+      ilman ostamista.
+    </p>
+
+    <p>
+      Laiteomistajille Rent Showcase tarjoaa yksinkertaisen tavan ansaita käyttämättömästä
+      laitteistosta ja tavoittaa valmiit vuokraajat.
+    </p>
+
+    <h2 class="text-xl font-semibold text-gray-900 mt-8 mb-3">Kenelle palvelu on tarkoitettu?</h2>
+    <ul class="list-disc pl-6 space-y-2">
+      <li><strong>Vuokraajat</strong> — yksityishenkilöt ja organisaatiot, jotka etsivät vuokrattavia laitteita.</li>
+      <li><strong>Omistajat</strong> — yksityishenkilöt ja organisaatiot, joilla on laitteita vuokrattavaksi.</li>
+    </ul>
+    <p>Sama tili voi toimia molemmissa rooleissa.</p>
+
+    <h2 class="text-xl font-semibold text-gray-900 mt-8 mb-3">Miten se toimii?</h2>
+    <p>
+      Selaa ilmoituksia kategorian tai sijainnin mukaan, tarkista saatavuus ja lähetä varauspyyntö.
+      Omistaja vahvistaa varauksen ja sopitte nouto sekä maksaminen keskenänne suoraan.
+      Maksaminen tapahtuu osapuolten välillä — palvelussa ei käsitellä maksuja.
+    </p>
+
+    <h2 class="text-xl font-semibold text-gray-900 mt-8 mb-3">Laitteiden kategoriat</h2>
+    <p>
+      Palvelussa voi vuokrata monenlaisia laitteita: rakennustyökaluja, av-laitteita,
+      urheiluvälineitä, lääkintälaitteita, ajoneuvoja, puutarhatyökaluja, kuvauskalustoa,
+      elektroniikkaa ja paljon muuta.
+    </p>
+  </div>
+
+  {% else %}
+
+  <h1 class="text-3xl font-bold text-gray-900 mb-6">About Rent Showcase</h1>
+
+  <div class="prose prose-gray max-w-none space-y-6 text-gray-700">
+    <p>
+      Rent Showcase is a peer-to-peer equipment rental marketplace connecting people and
+      organisations in Finland. Whether you need a drill for a weekend project, a camera for a
+      shoot, or specialised medical equipment — Rent Showcase makes it easy to find and rent
+      what you need without buying.
+    </p>
+
+    <p>
+      For equipment owners, Rent Showcase provides a simple way to earn from idle equipment and
+      reach renters who are ready to pay.
+    </p>
+
+    <h2 class="text-xl font-semibold text-gray-900 mt-8 mb-3">Who is it for?</h2>
+    <ul class="list-disc pl-6 space-y-2">
+      <li><strong>Renters</strong> — individuals and organisations looking to rent equipment.</li>
+      <li><strong>Owners</strong> — individuals and organisations with equipment to rent out.</li>
+    </ul>
+    <p>One account can act as both.</p>
+
+    <h2 class="text-xl font-semibold text-gray-900 mt-8 mb-3">How does it work?</h2>
+    <p>
+      Browse listings by category or location, check the availability calendar, and submit a
+      booking request. The owner confirms and you coordinate pickup and payment directly with each
+      other. Payments happen off-platform — we don't process money.
+    </p>
+
+    <h2 class="text-xl font-semibold text-gray-900 mt-8 mb-3">Equipment categories</h2>
+    <p>
+      The marketplace covers a wide range of equipment: construction tools, audio/visual and event
+      gear, sports and outdoor equipment, medical devices, vehicles, garden tools, photography and
+      film equipment, electronics, and more.
+    </p>
+  </div>
+
+  {% endif %}
+</div>
+{% endblock %}
