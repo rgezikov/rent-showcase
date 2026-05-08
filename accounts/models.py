@@ -41,3 +41,27 @@ class User(AbstractUser):
         if self.is_company and self.company_name:
             return self.company_name
         return self.get_full_name() or self.username
+
+
+class SiteSettings(models.Model):
+    registration_open = models.BooleanField(
+        _('registration open'),
+        default=True,
+        help_text=_('Uncheck to prevent new user registrations.'),
+    )
+
+    class Meta:
+        verbose_name = _('site settings')
+        verbose_name_plural = _('site settings')
+
+    def __str__(self):
+        return 'Site Settings'
+
+    def save(self, *args, **kwargs):
+        self.pk = 1  # enforce singleton
+        super().save(*args, **kwargs)
+
+    @classmethod
+    def get(cls):
+        obj, _ = cls.objects.get_or_create(pk=1)
+        return obj

@@ -11,6 +11,7 @@ from django.utils.translation import gettext_lazy as _
 from django.conf import settings
 
 from .forms import RegistrationForm, EmailLoginForm, ProfileEditForm
+from .models import SiteSettings
 
 User = get_user_model()
 
@@ -34,6 +35,8 @@ def _send_verification_email(request, user):
 def register(request):
     if request.user.is_authenticated:
         return redirect('home')
+    if not SiteSettings.get().registration_open:
+        return render(request, 'accounts/registration_closed.html', status=403)
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
         if form.is_valid():
