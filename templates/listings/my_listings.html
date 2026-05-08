@@ -43,7 +43,7 @@
                 {% if listing.is_active %}{% trans "Active" %}{% else %}{% trans "Inactive" %}{% endif %}
               </span>
             </div>
-            <p class="text-xs text-gray-500 mt-0.5">{{ listing.category.name }} · {{ listing.location }}</p>
+            <p class="text-xs text-gray-500 mt-0.5">{% trans listing.category.name %} · {{ listing.location }}</p>
             <p class="text-sm text-blue-600 mt-1">{{ listing.price_per_day }} € / {% trans "day" %}</p>
           </div>
 

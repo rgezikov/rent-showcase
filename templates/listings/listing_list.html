@@ -26,7 +26,7 @@
         <option value="">{% trans "All categories" %}</option>
         {% for cat in categories %}
           <option value="{{ cat.slug }}" {% if cat.slug == selected_category %}selected{% endif %}>
-            {{ cat.name }}
+            {% trans cat.name %}
           </option>
         {% endfor %}
       </select>
@@ -68,7 +68,7 @@
           </div>
           <!-- Info -->
           <div class="p-4">
-            <p class="text-xs text-gray-400 mb-1">{{ listing.category.name }}</p>
+            <p class="text-xs text-gray-400 mb-1">{% trans listing.category.name %}</p>
             <h2 class="text-sm font-semibold text-gray-900 truncate">{{ listing.title }}</h2>
             <p class="text-xs text-gray-500 mt-1">{{ listing.location }}</p>
             <p class="text-sm font-medium text-blue-600 mt-2">

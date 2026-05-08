@@ -1057,3 +1057,31 @@ msgstr "Merkitse kaikki luetuiksi"
 #: templates/notifications/notification_list.html:47
 msgid "No notifications yet."
 msgstr "Ei vielä ilmoituksia."
+
+# Category names (from fixtures — translated at runtime via {% trans variable %})
+msgid "Construction & Tools"
+msgstr "Rakennustyökalut"
+
+msgid "Audio/Visual & Events"
+msgstr "Audio/visuaalinen ja tapahtumat"
+
+msgid "Sports & Outdoors"
+msgstr "Urheilu ja ulkoilu"
+
+msgid "Medical Equipment"
+msgstr "Lääkintälaitteet"
+
+msgid "Vehicles & Transport"
+msgstr "Ajoneuvot ja kuljetus"
+
+msgid "Garden & Landscaping"
+msgstr "Puutarha ja maisemanhoito"
+
+msgid "Photography & Film"
+msgstr "Valokuvaus ja elokuva"
+
+msgid "Electronics"
+msgstr "Elektroniikka"
+
+msgid "Other"
+msgstr "Muu"

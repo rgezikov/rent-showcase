@@ -38,6 +38,13 @@ class TestLanguageSwitcher:
         for url in [reverse('home'), reverse('listings:list'), reverse('accounts:login')]:
             assert client.get(url).status_code == 200
 
+    def test_category_names_translated_in_finnish(self, client):
+        from listings.models import Category
+        Category.objects.get_or_create(name='Electronics', defaults={'slug': 'electronics'})
+        _set_language(client, 'fi')
+        response = client.get(reverse('listings:list'))
+        assert 'Elektroniikka' in response.content.decode()
+
     def test_user_generated_content_not_translated(self, client):
         from listings.tests.factories import ListingFactory
         listing = ListingFactory(title='My Special Drill')
