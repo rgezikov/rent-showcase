@@ -1,8 +1,10 @@
 services:
   app:
+    env_file: .env.prod
     restart: always
 
   db:
+    env_file: .env.prod
     restart: always
 
   nginx:
