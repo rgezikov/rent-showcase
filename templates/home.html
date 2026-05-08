@@ -16,11 +16,11 @@
       {% trans "Find equipment to rent from people and organisations near you, or list your own equipment and reach customers ready to rent." %}
     </p>
     <div class="mt-8 flex flex-col sm:flex-row justify-center gap-4">
-      <a href="#"
+      <a href="{% url 'listings:list' %}"
          class="bg-blue-600 text-white px-6 py-3 rounded-md text-sm font-medium hover:bg-blue-700">
         {% trans "Browse Equipment" %}
       </a>
-      <a href="#"
+      <a href="{% url 'listings:create' %}"
          class="bg-white text-blue-600 border border-blue-600 px-6 py-3 rounded-md text-sm font-medium hover:bg-blue-50">
         {% trans "List Your Equipment" %}
       </a>
