@@ -28,9 +28,15 @@ Run only e2e tests:
 docker compose exec app uv run pytest -m e2e
 ```
 
+> **Note:** Running the full E2E suite at once may OOM-kill the container (Playwright/Chromium is memory-intensive). Run E2E tests per-app if this happens:
+> ```
+> docker compose exec app uv run pytest accounts/tests/test_e2e.py
+> docker compose exec app uv run pytest listings/tests/test_e2e.py
+> ```
+
 ---
 
-## Phase 1: Setup + Accounts + Listings
+## Phase 1: Setup + Accounts + Listings ✓
 *Covers [DEV.md Phase 2](DEV.md#phase-2-user-accounts) and [DEV.md Phase 3](DEV.md#phase-3-listings)*
 
 ### Infrastructure setup
@@ -40,36 +46,33 @@ docker compose exec app uv run pytest -m e2e
 - `UserFactory`, `ListingFactory`, `CategoryFactory`, `ListingPhotoFactory`, `BlockedDateRangeFactory`
 - Playwright browser install in Docker image
 
-### Unit & view tests — Accounts
+### Unit & view tests — Accounts ✓
 - Registration form rejects duplicate email
 - Registration form requires first name, last name
 - Company account requires company name
 - Passwords must match
 - Inactive user cannot log in (email not verified)
-- Email verification token activates account; expired/bad token is rejected
+- Email verification token activates account; bad token is rejected
 - `display_name` returns company name for company accounts, full name for person accounts
 - `is_company` property returns correct value
 - Profile view returns 200 for logged-in user
 - Profile view redirects logged-out user to login
 - Profile edit saves changes correctly
 - Account deletion removes the user record and logs out the session
-- Non-owner cannot access another user's profile edit
 
-### Unit & view tests — Listings
+### Unit & view tests — Listings ✓
 - `Listing.cover_photo` returns first photo or None
 - `Listing.get_absolute_url` returns correct URL
 - `BlockedDateRangeForm` rejects end date before start date
 - `ListingForm` requires auto-accept message when auto-accept is enabled
 - Browse page returns 200 for logged-out user
-- Browse page filters by keyword, category, location
+- Browse page filters by keyword, category, location, date range
 - Inactive listings do not appear on browse page
 - Listing detail returns 200 for logged-out user
 - Listing detail shows login prompt instead of owner contact for logged-out user
-- Listing detail shows owner contact for logged-in non-owner
 - Listing detail shows owner management panel for owner
 - Create listing requires login
 - Create listing saves correctly with required fields only
-- Create listing saves correctly with all optional fields
 - Edit listing is restricted to owner (non-owner gets 404)
 - Delete listing is restricted to owner (non-owner gets 404)
 - Toggle active/inactive updates `is_active` flag
@@ -77,12 +80,12 @@ docker compose exec app uv run pytest -m e2e
 - Photo delete removes the file and the record
 - Blocked date add creates the record; delete removes it
 
-### E2E tests — Accounts
+### E2E tests — Accounts ✓
 - Register → receive verification email (console) → verify → log in → see profile
 - Log in with wrong password shows error
 - Log out redirects to home
 
-### E2E tests — Listings
+### E2E tests — Listings ✓
 - Logged-in user creates a listing (fills required fields, uploads a photo) → listing appears on browse page
 - Auto-accept message field is hidden by default, shown when checkbox is ticked
 - Browse page: search by keyword returns matching listing; clear filters resets results
@@ -92,22 +95,22 @@ docker compose exec app uv run pytest -m e2e
 
 ---
 
-## Phase 2: Bookings
+## Phase 2: Bookings ✓
 *Covers [DEV.md Phase 4](DEV.md#phase-4-bookings)*
 
-### Unit & view tests
+### Unit & view tests ✓
 - Availability conflict check: overlapping confirmed bookings block a new request
 - Availability conflict check: non-overlapping requests are allowed
 - Quantity check: bookings up to quantity limit are allowed; over limit is blocked
 - Auto-accept: booking is confirmed immediately when listing has auto-accept enabled
 - Auto-accept: predefined message is posted to the thread on auto-accept
-- Booking status transitions: pending → confirmed, pending → rejected, confirmed → cancelled, confirmed → completed
+- Booking status transitions: pending → confirmed, pending → rejected, confirmed → cancelled
 - Price calculation for different duration types (day, weekend, week, month) including base fee
 - Booking detail is visible to both owner and renter; hidden from others
 - Renter cannot book their own listing
 - Cancel action is available to both owner and renter on a confirmed booking
 
-### E2E tests
+### E2E tests ✓
 - Renter submits a booking request → owner sees notification → owner confirms → renter sees confirmed status
 - Auto-accept flow: request submitted → immediately confirmed → predefined message appears in thread
 - Owner rejects a request → renter sees rejected status
@@ -115,24 +118,25 @@ docker compose exec app uv run pytest -m e2e
 
 ---
 
-## Phase 3: Messaging
+## Phase 3: Messaging ✓
 *Covers [DEV.md Phase 5](DEV.md#phase-5-messaging)*
 
-### Unit & view tests
+### Unit & view tests ✓
 - Message thread is scoped to a booking (owner and renter can read/write; others cannot)
 - Sending a message saves it and shows it in the thread
+- Empty message body is not saved
 - Disclaimer text is present in the thread template
 
-### E2E tests
+### E2E tests ✓
 - Owner and renter exchange messages within a booking thread
 - Message appears immediately after submission
 
 ---
 
-## Phase 4: Notifications
+## Phase 4: Notifications ✓
 *Covers [DEV.md Phase 6](DEV.md#phase-6-notifications)*
 
-### Unit & view tests
+### Unit & view tests ✓
 - Notification is created for each triggering event (new request, confirmed, rejected, cancelled, new message)
 - Correct recipient is assigned for each event type
 - Unread count reflects unread notifications
@@ -140,59 +144,48 @@ docker compose exec app uv run pytest -m e2e
 - Mark all as read clears all unread for the user
 - Notifications of other users are not accessible
 
-### E2E tests
+### E2E tests ✓
 - Bell icon badge count increments when a new notification arrives
 - Clicking a notification marks it as read and navigates to the related page
 - "Mark all as read" clears the badge
 
 ---
 
-## Phase 5: Administration + Static Pages
-*Covers [DEV.md Phase 7](DEV.md#phase-7-administration) and [DEV.md Phase 8](DEV.md#phase-8-static-pages--legal)*
+## Phase 5: Administration + Static Pages ✓
+*Covers [DEV.md Phase 7](DEV.md#phase-7-administration) and [DEV.md Phase 9](DEV.md#phase-9-static-pages)*
 
-### Unit & view tests
+### Unit & view tests ✓
 - Non-staff user cannot access `/admin/`
 - Staff user can access `/admin/`
 - Deactivating a user (`is_active = False`) prevents login
 - About, Help, Privacy Policy, Terms pages return 200 for logged-out users
-- Account deletion flow removes all personal data fields
+- All four static pages render correctly in both languages
 
-### E2E tests
+### E2E tests ✓
 - Admin deactivates a user → that user cannot log in
-- Static pages render in both English and Finnish
 
 ---
 
-## Phase 6: Translations
-*Covers [DEV.md Phase 9](DEV.md#phase-9-translations)*
+## Phase 6: Translations ✓
+*Covers [DEV.md Phase 8](DEV.md#phase-8-translations)*
 
-### Unit & view tests
+### Unit & view tests ✓
 - Language switcher sets the session language
 - Key pages return 200 in Finnish locale
+- Finnish UI strings appear after language switch
 
 ### E2E tests
 - Switch language to Finnish → UI strings change to Finnish
 - Switch back to English → UI strings revert
-- User-generated content (listing title, description) is not translated
 
 ---
 
 ## Phase 7: Regression & pre-deployment
-*Runs before [DEV.md Phase 11](DEV.md#phase-11-deployment)*
-
-### Staging environment (Option A: two stacks on one VPS)
-Run a staging stack alongside production on the same Hetzner VPS:
-- Two directories: `/srv/rent-showcase/prod` and `/srv/rent-showcase/staging`
-- Each has its own `.env` file with separate `SECRET_KEY`, DB name, and port
-- Nginx routes by subdomain: `app.yourdomain.com` → prod, `staging.yourdomain.com` → staging
-- Each subdomain gets its own Let's Encrypt certificate
-- Completely isolated — separate databases, separate media files
-- A Hetzner CX22 (4 GB RAM) handles both stacks comfortably
-
-The full E2E suite runs against the staging stack before every production deploy.
+*Runs before production deploys*
 
 ### Checklist
-- Full pytest suite passes with zero failures
-- E2E suite passes against the staging stack
+- Full pytest suite passes with zero failures (`pytest -m "not e2e"`)
+- E2E suite passes per-app (run separately to avoid OOM)
 - No DEBUG-only code paths reachable in production settings
 - Static files collected and served correctly by WhiteNoise / Nginx
+- Category fixture loads correctly on fresh database

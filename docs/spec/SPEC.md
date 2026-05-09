@@ -16,8 +16,9 @@ Finland is an EU member state. The service must comply with **GDPR** and the Fin
 
 ### Required at launch
 - **Privacy policy page** — publicly accessible, shown before or at registration. Must state: what data is collected, purpose, retention period, third-party sharing, and user rights.
+- **Terms of service page** — publicly accessible, outlines user obligations and platform liability limits.
 - **Account deletion** — users must be able to delete their account, triggering erasure of all personal data.
-- **Data retention policy** — define and enforce limits (e.g. anonymise completed booking data after 2 years; delete inactive accounts after X years).
+- **Data retention policy** — define and enforce limits (e.g. anonymise completed booking data after 2 years; delete inactive accounts after 3 years).
 
 ### User rights to support
 | Right | How |
@@ -34,7 +35,7 @@ Only collect data that is strictly necessary for the service to function. Curren
 Must notify the Ombudsman within **72 hours** of discovering a personal data breach.
 
 ### Data storage location
-All data must remain within the **EU/EEA**. Hetzner (Helsinki or other EU region) satisfies this requirement.
+All data must remain within the **EU/EEA**. Hetzner (Helsinki) satisfies this requirement.
 
 ### Cookies & analytics
 If tracking or analytics are added, a **cookie consent banner** is required. For MVP, avoid third-party tracking to keep compliance simple.
@@ -62,6 +63,9 @@ A Data Protection Officer is not mandatory for a small marketplace of this type.
 ### Profile visibility
 - **Logged-out users** can browse listings and see prices, but owner details (name, phone, email, bio) are hidden.
 - **Logged-in users** can view another user's full profile: name, general location, member since date, active listings, and contact details.
+
+### Registration toggle
+- An admin-controlled toggle (`SiteSettings.registration_open`) allows registration to be disabled site-wide without a code change.
 
 ---
 
@@ -175,9 +179,9 @@ Each account has a personal notification log accessible from the navigation bar 
 | Transactional email | Brevo (free tier — 300 emails/day) via SMTP |
 | Web server | Gunicorn + Nginx |
 | Containerisation | Docker + Docker Compose |
-| Hosting | Hetzner VPS |
-| SSL | Let's Encrypt |
-| Domain | Custom domain + subdomain (e.g. `app.yourdomain.com`) |
+| Hosting | Hetzner CX23 VPS (2 vCPU, 4 GB RAM, 40 GB SSD) |
+| SSL | Let's Encrypt (Certbot) |
+| Domain | rent.respobit.eu |
 
 ### Docker strategy
 The entire stack (app, PostgreSQL, Nginx) runs in Docker Compose from local development through to production. This ensures environment parity, simplifies moving between machines, and makes clean test deployments trivial. Code is mounted as a volume in development for fast iteration. Environment-specific overrides (`docker-compose.override.yml`) handle the differences between dev and prod. All development work should be done with Docker in mind — no host-specific paths, no hardcoded ports, all config via environment variables.
@@ -207,39 +211,43 @@ The UI must work correctly on **desktop, tablet, and mobile** (phone). Tailwind 
 - The interface is available in **English** (default) and **Finnish**.
 - Language can be switched by the user at any time via a language switcher in the navigation bar.
 - Django's built-in i18n framework (`gettext`) is used for all UI strings.
-- Translation files are maintained as `.po`/`.mo` files under `locale/fi/` and `locale/en/`.
+- Translation files are maintained as `.po`/`.mo` files under `locale/fi/`.
+- `.mo` files are compiled at Docker image build time (not stored in git).
 - The selected language is stored in the session (Django `LocaleMiddleware`).
 - User-generated content (listing titles, descriptions, messages) is **not** translated — only the UI chrome is.
+- Category names are DB-stored strings translated at runtime via `{% trans variable %}` and manually maintained in the `.po` file.
 
 ---
 
 ## 14. Static Pages
 
+All static pages are available in English and Finnish and accessible to logged-out users. They are linked from the footer.
+
 ### About
-- Standard page describing the service: what it is, who it is for, and how it works.
-- Accessible to all visitors (logged in or not).
-- Linked from the footer and navigation bar.
+Describes the service: what it is, who it is for, and how it works.
 
 ### Help
-- Static text page explaining the two main flows:
-  - **How to rent equipment** — find a listing, check availability, submit a booking request, communicate with the owner.
-  - **How to list equipment for rent** — create an account, create a listing, manage availability, handle booking requests.
-- Accessible to all visitors.
-- Linked from the footer and navigation bar.
-- Both pages available in English and Finnish.
+Two sections: how to rent equipment, and how to list equipment for rent.
+
+### Privacy Policy
+GDPR-compliant policy covering: data collected, legal basis, retention periods, data sharing, user rights, breach notification, and supervisory authority contact.
+
+### Terms of Service
+Covers: service description, user account responsibilities, rental agreement disclaimers, prohibited content, liability limits, account termination, governing law (Finnish law, Helsinki District Court).
 
 ---
 
-## 16. Administration
+## 15. Administration
 
 - Django built-in admin panel (`/admin`) is used for MVP.
 - Administrator roles are managed via Django's built-in permissions (`is_staff`, `is_superuser`).
 - Administrators can: manage users, listings, categories, bookings, and messages.
 - **User blocking/banning** — admin can deactivate a user account (`is_active = False`), which immediately prevents login and hides their listings.
+- **Registration toggle** — admin can disable new registrations via `SiteSettings` without a code change.
 
 ---
 
-## 17. Post MVP Features
+## 16. Post MVP Features
 
 - Extended pricing model: deposit, delivery fee, minimum rental period
 - Payment processing (Stripe or similar)
