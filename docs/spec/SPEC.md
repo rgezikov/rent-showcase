@@ -56,9 +56,17 @@ A Data Protection Officer is not mandatory for a small marketplace of this type.
 ## 4. User Accounts
 
 - A single account can act as both **owner** (lists equipment) and **renter** (books equipment) — no separate accounts needed.
-- Authentication: email + password registration and login.
-- **Email verification required** — user must confirm their email address before accessing the app.
+- Authentication: email + password registration and login, or **Google OAuth** (sign in with Google).
+- **Email verification required** for email/password accounts — user must confirm their email address before accessing the app.
+- Google OAuth accounts are created without email verification (Google has already verified the email).
 - Profile fields: account type (person / company), name, company name (only if account type is company), email, phone, location (city/area), avatar/photo, short bio.
+
+### Google OAuth
+- Available for **person accounts only** — company accounts must use email/password registration.
+- Google provides first name, last name, and email — account is created automatically with `account_type=person`.
+- No post-signup step required; optional profile fields (phone, location, bio, avatar) can be filled in later.
+- A visible note on the login and registration pages informs users that Google sign-in is for personal accounts only; companies should use the email/password form.
+- Implemented via `django-allauth`.
 
 ### Profile visibility
 - **Logged-out users** can browse listings and see prices, but owner details (name, phone, email, bio) are hidden.
@@ -177,6 +185,7 @@ Each account has a personal notification log accessible from the navigation bar 
 | Frontend | Django templates + HTMX + Tailwind CSS |
 | Static files | WhiteNoise (served via Django/Nginx) |
 | Transactional email | Brevo (free tier — 300 emails/day) via SMTP |
+| Social auth | django-allauth (Google OAuth) |
 | Web server | Gunicorn + Nginx |
 | Containerisation | Docker + Docker Compose |
 | Hosting | Hetzner CX23 VPS (2 vCPU, 4 GB RAM, 40 GB SSD) |

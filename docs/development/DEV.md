@@ -106,3 +106,14 @@
 - Categories loaded automatically via `entrypoint.sh` (`loaddata listings/fixtures/categories.json`)
 - One-command deploy: `bash /opt/rent-showcase/scripts/deploy.sh`
 - Brevo transactional email: domain `rent.respobit.eu` authenticated (SPF, DKIM via CNAME, DMARC)
+
+## Phase 12: Google OAuth
+→ *Tests: [DEV-TEST.md Phase 8](DEV-TEST.md#phase-8-google-oauth)*
+
+- Install and configure `django-allauth` with Google provider
+- Create Google OAuth 2.0 credentials in Google Cloud Console; add `rent.respobit.eu` as authorised origin and callback URL
+- Custom allauth adapter: set `account_type=person`, copy `given_name`/`family_name` from Google profile, skip email verification
+- Add "Sign in with Google" button to login and register pages
+- Display a note near the Google button: Google sign-in is for personal accounts only; companies should use the email/password form
+- Google OAuth is for person accounts only — company accounts continue to use email/password
+- Store Google Client ID and Secret in `.env.prod` (never in git)

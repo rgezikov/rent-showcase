@@ -180,6 +180,27 @@ docker compose exec app uv run pytest -m e2e
 
 ---
 
+## Phase 8: Google OAuth
+*Covers [DEV.md Phase 12](DEV.md#phase-12-google-oauth)*
+
+### Unit tests (automated) ✓
+- Allauth callback with mocked Google profile creates user with `account_type=person`
+- `first_name` and `last_name` are populated from Google `given_name` / `family_name`
+- Email is taken from Google profile; email verification is skipped
+- Existing email/password user logging in with the same Google email links accounts correctly
+- Google OAuth does not create company accounts
+
+### E2E tests (manual only)
+The full OAuth redirect flow cannot be automated — Google's login page blocks automated browsers.
+
+Manual test checklist:
+- Click "Sign in with Google" on login page → redirected to Google → redirected back → logged in
+- New Google user: profile shows correct name and email, `account_type=person`
+- Returning Google user: logged in without re-authorising
+- Google login button is absent on company registration path
+
+---
+
 ## Phase 7: Regression & pre-deployment
 *Runs before production deploys*
 
