@@ -2,6 +2,8 @@ from .base import *
 
 DEBUG = False
 
+ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'https'
+
 STORAGES = {
     'default': {'BACKEND': 'django.core.files.storage.FileSystemStorage'},
     'staticfiles': {'BACKEND': 'whitenoise.storage.CompressedManifestStaticFilesStorage'},
