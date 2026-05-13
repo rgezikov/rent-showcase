@@ -142,27 +142,15 @@
     </p>
 
     <!-- Messages -->
-    {% with messages_list=booking.messages.all %}
-      {% if messages_list %}
-        <div class="space-y-3 mb-6">
-          {% for msg in messages_list %}
-            <div class="{% if msg.is_system %}bg-blue-50 border border-blue-100{% elif msg.sender == request.user %}bg-blue-600 text-white{% else %}bg-gray-100{% endif %} rounded-lg px-4 py-3 text-sm">
-              {% if msg.is_system %}
-                <p class="text-xs text-blue-400 mb-1">⚡ {% trans "Auto-message" %} · {{ msg.created_at|date:"d M Y H:i" }}</p>
-                <p class="text-blue-800">{{ msg.body }}</p>
-              {% else %}
-                <p class="text-xs {% if msg.sender == request.user %}text-blue-200{% else %}text-gray-400{% endif %} mb-1">
-                  {{ msg.sender.get_full_name|default:msg.sender.display_name }} · {{ msg.created_at|date:"d M Y H:i" }}
-                </p>
-                <p>{{ msg.body }}</p>
-              {% endif %}
-            </div>
-          {% endfor %}
-        </div>
-      {% else %}
-        <p class="text-sm text-gray-400 mb-6">{% trans "No messages yet." %}</p>
-      {% endif %}
-    {% endwith %}
+    <div id="message-thread"
+         class="space-y-3 mb-6"
+         hx-get="{% url 'messaging:message_list' booking.pk %}"
+         hx-trigger="every 10s"
+         hx-swap="innerHTML">
+      {% with messages_list=booking.messages.all %}
+        {% include 'messaging/messages_partial.html' %}
+      {% endwith %}
+    </div>
 
     <!-- Send form -->
     <form method="post" action="{% url 'messaging:send' booking.pk %}">

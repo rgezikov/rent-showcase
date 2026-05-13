@@ -1,0 +1,11 @@
+{% load i18n %}
+<span id="notification-badge"
+      hx-get="{% url 'notifications:unread_count' %}"
+      hx-trigger="every 10s"
+      hx-swap="outerHTML">
+  {% if unread_notification_count %}
+    <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs w-4 h-4 rounded-full flex items-center justify-center leading-none">
+      {{ unread_notification_count }}
+    </span>
+  {% endif %}
+</span>

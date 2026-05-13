@@ -1,6 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
-from django.shortcuts import redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 
 from bookings.models import Booking
 from notifications.models import Notification
@@ -29,3 +29,14 @@ def send_message(request, booking_pk):
             create_notification(recipient, Notification.NEW_MESSAGE, booking)
 
     return redirect('bookings:detail', pk=booking_pk)
+
+
+@login_required
+def message_list(request, booking_pk):
+    booking = get_object_or_404(Booking, pk=booking_pk)
+    if request.user not in (booking.renter, booking.listing.owner):
+        raise Http404
+    return render(request, 'messaging/messages_partial.html', {
+        'booking': booking,
+        'messages_list': booking.messages.all(),
+    })

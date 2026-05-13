@@ -25,6 +25,14 @@ def notification_goto(request, pk):
 
 
 @login_required
+def unread_count(request):
+    count = request.user.notifications.filter(is_read=False).count()
+    return render(request, 'notifications/badge_fragment.html', {
+        'unread_notification_count': count,
+    })
+
+
+@login_required
 def notification_mark_all_read(request):
     if request.method == 'POST':
         request.user.notifications.filter(is_read=False).update(is_read=True)
