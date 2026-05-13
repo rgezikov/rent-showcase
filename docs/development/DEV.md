@@ -119,3 +119,12 @@
 - Display a note near the Google button: Google sign-in is for personal accounts only; companies should use the email/password form
 - Google OAuth is for person accounts only — company accounts continue to use email/password
 - Store Google Client ID and Secret in `.env.prod` (never in git)
+
+## Phase 13: Password Reset
+→ *Tests: [DEV-TEST.md Phase 9](DEV-TEST.md#phase-9-password-reset)*
+
+- Django's built-in password reset flow (`PasswordResetView`, `PasswordResetConfirmView`)
+- Sends reset link via Brevo SMTP (already configured)
+- "Forgot password?" link on the login page
+- Bilingual email templates (EN + FI) and reset pages
+- Google OAuth users who have no password get a clear message that password reset is not applicable

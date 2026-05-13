@@ -203,6 +203,22 @@ Manual test checklist:
 
 ---
 
+## Phase 9: Password Reset
+*Covers [DEV.md Phase 13](DEV.md#phase-13-password-reset)*
+
+### Unit & view tests
+- Reset request with valid email sends an email and redirects to confirmation page
+- Reset request with unknown email does not leak user existence (same response)
+- Reset link with valid token shows new password form
+- Reset link with invalid/expired token shows error
+- Password is updated successfully after valid reset
+- Google OAuth user (no password) sees informational message instead of reset form
+
+### E2E tests (manual)
+- Click "Forgot password?" → enter email → receive email → click link → set new password → log in
+
+---
+
 ## Phase 7: Regression & pre-deployment
 *Runs before production deploys*
 
