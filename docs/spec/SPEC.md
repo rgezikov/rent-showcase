@@ -163,10 +163,10 @@ Each account has a personal notification log accessible from the navigation bar 
 - Unread count is shown as a badge on the bell icon in the navbar.
 
 ### Delivery
-- **In-app only for MVP.**
-- The bell badge updates automatically every 10 seconds via HTMX polling — no page refresh required.
+- **In-app** — bell badge updates every 10 seconds via HTMX polling, no page refresh required.
 - The message thread on the booking detail page also polls every 10 seconds for new messages.
-- Email and/or Telegram notifications are a post-MVP feature.
+- **Email** — a plain-text email is sent via Brevo for every notification event. Emails fail silently so delivery issues never affect the booking flow.
+- Telegram notifications are a post-MVP feature.
 
 ---
 
@@ -264,6 +264,7 @@ Covers: service description, user account responsibilities, rental agreement dis
 - Reviews and ratings
 - Email notifications (booking events, messages)
 - ~~Email-based password reset~~ → done (Phase 13)
+- ~~Email notifications~~ → done (Phase 14)
 - Telegram notifications (may be simpler than email — via Telegram Bot API)
 - Map-based search
 - Mobile native app

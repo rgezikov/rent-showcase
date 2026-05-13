@@ -145,6 +145,8 @@ docker compose exec app uv run pytest -m e2e
 - Notifications of other users are not accessible
 - `/notifications/unread-count/` returns correct badge fragment for authenticated user
 - `/messaging/<pk>/messages/` returns messages partial for booking participant; 404 for others
+- Email is sent to recipient for each of the 5 notification event types
+- Email subject reflects event type; body contains listing title and booking link
 
 ### E2E tests ✓
 - Bell icon badge count increments when a new notification arrives

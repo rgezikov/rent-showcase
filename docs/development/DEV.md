@@ -120,6 +120,14 @@
 - Google OAuth is for person accounts only — company accounts continue to use email/password
 - Store Google Client ID and Secret in `.env.prod` (never in git)
 
+## Phase 14: Email Notifications ✓
+
+- `notifications/emails.py` — `send_notification_email(notification)` sends plain-text email via Brevo for all 5 event types
+- `create_notification()` extended to call email function after saving notification
+- Email body includes notification text, listing title, dates, and a direct booking link
+- Domain resolved via Sites framework (set correctly by entrypoint.sh)
+- `fail_silently=True` — email failures never break the booking or messaging flow
+
 ## Phase 13: Password Reset ✓
 → *Tests: [DEV-TEST.md Phase 9](DEV-TEST.md#phase-9-password-reset)*
 
