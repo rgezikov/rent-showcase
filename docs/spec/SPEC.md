@@ -260,7 +260,7 @@ Covers: service description, user account responsibilities, rental agreement dis
 ## 16. Post MVP Features
 
 - Listing statistics for owners (views, booking requests, confirmed bookings, revenue per listing)
-- Extended pricing model: deposit, delivery fee, minimum rental period
+- ~~Extended pricing model: deposit, delivery fee, minimum rental period~~ → done (Phase 15)
 - Reviews and ratings
 - Email notifications (booking events, messages)
 - ~~Email-based password reset~~ → done (Phase 13)

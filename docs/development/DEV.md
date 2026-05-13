@@ -120,6 +120,13 @@
 - Google OAuth is for person accounts only — company accounts continue to use email/password
 - Store Google Client ID and Secret in `.env.prod` (never in git)
 
+## Phase 15: Extended Pricing Model ✓
+
+- New `Listing` fields: `delivery_fee`, `deposit` (refundable, shown separately, not in rental price), `minimum_days`
+- `delivery_fee` included in `Booking.calculate_price()`
+- `BookingForm` validates `minimum_days` before availability check; booking form shows warning to renter
+- Listing detail shows all new fields when set
+
 ## Phase 14: Email Notifications ✓
 
 - `notifications/emails.py` — `send_notification_email(notification)` sends plain-text email via Brevo for all 5 event types
