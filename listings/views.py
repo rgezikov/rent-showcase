@@ -2,7 +2,8 @@ import datetime
 
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.db.models import Q
+from django.db import models
+from django.db.models import Q, Sum, Count
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils.translation import gettext_lazy as _
 
@@ -71,6 +72,9 @@ def listing_detail(request, pk):
     photo_form = None
 
     is_owner = request.user.is_authenticated and request.user == listing.owner
+
+    if not is_owner:
+        Listing.objects.filter(pk=listing.pk).update(view_count=models.F('view_count') + 1)
 
     if is_owner:
         blocked_form = BlockedDateRangeForm()
@@ -160,7 +164,23 @@ def listing_toggle_active(request, pk):
 
 @login_required
 def my_listings(request):
-    listings = Listing.objects.filter(owner=request.user).prefetch_related('photos')
+    from bookings.models import Booking
+    listings = (
+        Listing.objects
+        .filter(owner=request.user)
+        .prefetch_related('photos')
+        .annotate(
+            total_requests=Count('bookings'),
+            confirmed_bookings=Count(
+                'bookings',
+                filter=models.Q(bookings__status__in=[Booking.CONFIRMED, Booking.COMPLETED])
+            ),
+            total_revenue=Sum(
+                'bookings__total_price',
+                filter=models.Q(bookings__status__in=[Booking.CONFIRMED, Booking.COMPLETED])
+            ),
+        )
+    )
     return render(request, 'listings/my_listings.html', {'listings': listings})
 
 

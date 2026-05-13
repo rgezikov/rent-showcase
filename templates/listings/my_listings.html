@@ -45,6 +45,12 @@
             </div>
             <p class="text-xs text-gray-500 mt-0.5">{% trans listing.category.name %} · {{ listing.location }}</p>
             <p class="text-sm text-blue-600 mt-1">{{ listing.price_per_day }} € / {% trans "day" %}</p>
+            <div class="flex gap-4 mt-2 text-xs text-gray-400">
+              <span>👁 {{ listing.view_count }} {% trans "views" %}</span>
+              <span>📋 {{ listing.total_requests }} {% trans "requests" %}</span>
+              <span>✅ {{ listing.confirmed_bookings }} {% trans "confirmed" %}</span>
+              <span>💶 {{ listing.total_revenue|default:"0" }} € {% trans "revenue" %}</span>
+            </div>
           </div>
 
           <!-- Actions -->

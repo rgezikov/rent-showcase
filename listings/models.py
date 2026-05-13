@@ -49,6 +49,7 @@ class Listing(models.Model):
     auto_accept_message = models.TextField(_('auto-accept message'), blank=True)
 
     is_active = models.BooleanField(_('active'), default=True)
+    view_count = models.PositiveIntegerField(_('view count'), default=0)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
