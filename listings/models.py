@@ -39,6 +39,9 @@ class Listing(models.Model):
     price_per_week = models.DecimalField(_('price per week'), max_digits=10, decimal_places=2, null=True, blank=True)
     price_per_month = models.DecimalField(_('price per month'), max_digits=10, decimal_places=2, null=True, blank=True)
     base_fee = models.DecimalField(_('base fee'), max_digits=10, decimal_places=2, null=True, blank=True)
+    delivery_fee = models.DecimalField(_('delivery fee'), max_digits=10, decimal_places=2, null=True, blank=True)
+    deposit = models.DecimalField(_('refundable deposit'), max_digits=10, decimal_places=2, null=True, blank=True)
+    minimum_days = models.PositiveIntegerField(_('minimum rental period (days)'), null=True, blank=True)
     payment_methods = models.CharField(_('preferred payment methods'), max_length=200, blank=True)
 
     quantity = models.PositiveIntegerField(_('quantity'), default=1)

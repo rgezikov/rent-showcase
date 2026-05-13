@@ -69,3 +69,23 @@ class TestBookingForm:
         form = BookingForm(listing)
         from django.forms import HiddenInput
         assert not isinstance(form.fields['quantity'].widget, HiddenInput)
+
+    def test_minimum_days_enforced(self):
+        listing = ListingFactory(minimum_days=5)
+        start = today() + delta(7)
+        form = BookingForm(listing, data={
+            'start_date': start.isoformat(),
+            'end_date': (start + delta(2)).isoformat(),  # 3 days < minimum 5
+            'quantity': 1,
+        })
+        assert not form.is_valid()
+
+    def test_minimum_days_passes_when_met(self):
+        listing = ListingFactory(minimum_days=3)
+        start = today() + delta(7)
+        form = BookingForm(listing, data={
+            'start_date': start.isoformat(),
+            'end_date': (start + delta(2)).isoformat(),  # 3 days == minimum 3
+            'quantity': 1,
+        })
+        assert form.is_valid()

@@ -90,5 +90,7 @@ class Booking(models.Model):
 
         if listing.base_fee:
             price += listing.base_fee
+        if listing.delivery_fee:
+            price += listing.delivery_fee
 
         return price.quantize(Decimal('0.01'))

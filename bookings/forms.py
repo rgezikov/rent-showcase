@@ -40,6 +40,13 @@ class BookingForm(forms.ModelForm):
                 raise forms.ValidationError(_('End date must be on or after start date.'))
             if start < datetime.date.today():
                 raise forms.ValidationError(_('Start date cannot be in the past.'))
+            if self.listing.minimum_days:
+                duration = (end - start).days + 1
+                if duration < self.listing.minimum_days:
+                    raise forms.ValidationError(
+                        _('This listing requires a minimum rental period of %(days)s day(s).')
+                        % {'days': self.listing.minimum_days}
+                    )
             if not Booking.is_available(self.listing, start, end, qty):
                 raise forms.ValidationError(_('The requested dates are not available for this listing.'))
 

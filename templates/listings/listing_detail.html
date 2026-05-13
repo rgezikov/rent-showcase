@@ -68,6 +68,18 @@
             <span class="text-gray-500">{% trans "Base fee" %}</span>
             <span class="font-medium">{{ listing.base_fee }} €</span>
           {% endif %}
+          {% if listing.delivery_fee %}
+            <span class="text-gray-500">{% trans "Delivery fee" %}</span>
+            <span class="font-medium">{{ listing.delivery_fee }} €</span>
+          {% endif %}
+          {% if listing.deposit %}
+            <span class="text-gray-500">{% trans "Deposit (refundable)" %}</span>
+            <span class="font-medium">{{ listing.deposit }} €</span>
+          {% endif %}
+          {% if listing.minimum_days %}
+            <span class="text-gray-500">{% trans "Minimum rental" %}</span>
+            <span class="font-medium">{{ listing.minimum_days }} {% trans "day(s)" %}</span>
+          {% endif %}
         </div>
         {% if listing.payment_methods %}
           <p class="text-xs text-gray-500 mt-3">

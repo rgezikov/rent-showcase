@@ -12,7 +12,7 @@ class ListingForm(forms.ModelForm):
         fields = [
             'title', 'description', 'category', 'location',
             'price_per_day', 'price_per_weekend', 'price_per_week', 'price_per_month',
-            'base_fee', 'payment_methods',
+            'base_fee', 'delivery_fee', 'deposit', 'minimum_days', 'payment_methods',
             'quantity', 'auto_accept', 'auto_accept_message',
         ]
         widgets = {
@@ -26,7 +26,7 @@ class ListingForm(forms.ModelForm):
             if name not in ('auto_accept',):
                 field.widget.attrs.update(WIDGET_CLASS)
         for name in ('price_per_day', 'price_per_weekend', 'price_per_week',
-                     'price_per_month', 'base_fee'):
+                     'price_per_month', 'base_fee', 'delivery_fee', 'deposit'):
             self.fields[name].widget.attrs.update({'step': '0.01', 'min': '0'})
 
     def clean(self):

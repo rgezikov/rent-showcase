@@ -122,3 +122,15 @@ class TestCalculatePrice:
         start = today() + delta(7)
         end = start + delta(1)  # 2 days
         assert Booking.calculate_price(listing, start, end) == Decimal('20.00')
+
+    def test_delivery_fee_added(self):
+        listing = ListingFactory(price_per_day=Decimal('10.00'), delivery_fee=Decimal('8.00'))
+        start = today() + delta(7)
+        end = start  # 1 day
+        assert Booking.calculate_price(listing, start, end) == Decimal('18.00')
+
+    def test_deposit_not_included_in_price(self):
+        listing = ListingFactory(price_per_day=Decimal('10.00'), deposit=Decimal('50.00'))
+        start = today() + delta(7)
+        end = start  # 1 day
+        assert Booking.calculate_price(listing, start, end) == Decimal('10.00')

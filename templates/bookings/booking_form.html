@@ -14,7 +14,12 @@
 
     <!-- Form -->
     <div class="bg-white border border-gray-200 rounded-lg p-6">
-      <h1 class="text-xl font-bold text-gray-900 mb-6">{% trans "Request booking" %}</h1>
+      <h1 class="text-xl font-bold text-gray-900 mb-4">{% trans "Request booking" %}</h1>
+      {% if listing.minimum_days %}
+        <p class="text-sm text-amber-700 bg-amber-50 border border-amber-100 rounded-md px-3 py-2 mb-4">
+          {% blocktrans with days=listing.minimum_days %}Minimum rental period: {{ days }} day(s).{% endblocktrans %}
+        </p>
+      {% endif %}
 
       <form method="post">
         {% csrf_token %}
