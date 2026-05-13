@@ -1,9 +1,12 @@
+import json
+
 from django.contrib import messages
 from django.contrib.auth import login, logout, get_user_model
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView, LogoutView
 from django.core import signing
 from django.core.mail import send_mail
+from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.template.loader import render_to_string
 from django.urls import reverse
@@ -107,3 +110,68 @@ def account_delete(request):
         messages.success(request, _('Your account has been deleted.'))
         return redirect('home')
     return render(request, 'accounts/account_delete_confirm.html')
+
+
+@login_required
+def data_export(request):
+    user = request.user
+
+    profile = {
+        'email': user.email,
+        'first_name': user.first_name,
+        'last_name': user.last_name,
+        'account_type': user.account_type,
+        'company_name': user.company_name,
+        'phone': user.phone,
+        'location': user.location,
+        'bio': user.bio,
+        'date_joined': user.date_joined.isoformat(),
+    }
+
+    listings = [
+        {
+            'title': l.title,
+            'description': l.description,
+            'category': l.category.name if l.category else None,
+            'location': l.location,
+            'price_per_day': str(l.price_per_day),
+            'is_active': l.is_active,
+            'created_at': l.created_at.isoformat(),
+        }
+        for l in user.listings.all()
+    ]
+
+    bookings_as_renter = [
+        {
+            'listing': b.listing.title,
+            'start_date': str(b.start_date),
+            'end_date': str(b.end_date),
+            'status': b.status,
+            'total_price': str(b.total_price),
+            'created_at': b.created_at.isoformat(),
+        }
+        for b in user.bookings.all()
+    ]
+
+    messages_sent = [
+        {
+            'booking': m.booking.listing.title,
+            'body': m.body,
+            'sent_at': m.created_at.isoformat(),
+        }
+        for m in user.sent_messages.filter(is_system=False)
+    ]
+
+    payload = {
+        'profile': profile,
+        'listings': listings,
+        'bookings': bookings_as_renter,
+        'messages': messages_sent,
+    }
+
+    response = HttpResponse(
+        json.dumps(payload, indent=2, ensure_ascii=False),
+        content_type='application/json',
+    )
+    response['Content-Disposition'] = 'attachment; filename="my-rent-showcase-data.json"'
+    return response

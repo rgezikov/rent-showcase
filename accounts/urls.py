@@ -13,6 +13,7 @@ urlpatterns = [
     path('profile/<int:pk>/', views.profile_view, name='profile'),
     path('profile/edit/', views.profile_edit, name='profile_edit'),
     path('delete/', views.account_delete, name='account_delete'),
+    path('export/', views.data_export, name='data_export'),
 
     # Password reset
     path('password-reset/',
