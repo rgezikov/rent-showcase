@@ -120,7 +120,7 @@
 - Google OAuth is for person accounts only — company accounts continue to use email/password
 - Store Google Client ID and Secret in `.env.prod` (never in git)
 
-## Phase 13: Password Reset
+## Phase 13: Password Reset ✓
 → *Tests: [DEV-TEST.md Phase 9](DEV-TEST.md#phase-9-password-reset)*
 
 - Django's built-in password reset flow (`PasswordResetView`, `PasswordResetConfirmView`)

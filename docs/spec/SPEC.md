@@ -263,7 +263,7 @@ Covers: service description, user account responsibilities, rental agreement dis
 - Extended pricing model: deposit, delivery fee, minimum rental period
 - Reviews and ratings
 - Email notifications (booking events, messages)
-- ~~Email-based password reset~~ → planned Phase 13
+- ~~Email-based password reset~~ → done (Phase 13)
 - Telegram notifications (may be simpler than email — via Telegram Bot API)
 - Map-based search
 - Mobile native app

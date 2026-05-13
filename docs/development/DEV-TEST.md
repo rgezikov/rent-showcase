@@ -203,7 +203,7 @@ Manual test checklist:
 
 ---
 
-## Phase 9: Password Reset
+## Phase 9: Password Reset ✓
 *Covers [DEV.md Phase 13](DEV.md#phase-13-password-reset)*
 
 ### Unit & view tests
