@@ -1,0 +1,12 @@
+Hi {{ notification.recipient.display_name }},
+
+{{ notification.get_text }}
+
+Listing: {{ listing.title }}
+Dates: {{ booking.start_date }} – {{ booking.end_date }}
+
+View booking: https://{{ domain }}{{ booking.get_absolute_url }}
+
+---
+Rent Showcase — https://{{ domain }}
+To stop receiving these emails, contact us at privacy@rent.respobit.eu
