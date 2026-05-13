@@ -172,9 +172,8 @@ Each account has a personal notification log accessible from the navigation bar 
 
 ## 9. Payments
 
-- **Off-platform for MVP.** No payment processing in the app.
+- **Off-platform permanently.** No payment processing in the app.
 - Price is displayed for reference; actual payment is arranged directly between owner and renter.
-- Stripe or similar may be integrated in a future phase.
 
 ---
 
@@ -261,7 +260,6 @@ Covers: service description, user account responsibilities, rental agreement dis
 ## 16. Post MVP Features
 
 - Extended pricing model: deposit, delivery fee, minimum rental period
-- Payment processing (Stripe or similar)
 - Reviews and ratings
 - Email notifications (booking events, messages)
 - Email-based password reset
