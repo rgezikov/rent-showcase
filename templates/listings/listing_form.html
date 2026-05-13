@@ -7,7 +7,7 @@
 <div class="max-w-2xl mx-auto px-4 py-10">
   <h1 class="text-2xl font-bold text-gray-900 mb-6">{{ action }}</h1>
 
-  <form method="post" enctype="multipart/form-data" class="space-y-6" novalidate>
+  <form id="listing-form" method="post" enctype="multipart/form-data" class="space-y-6" novalidate>
     {% csrf_token %}
 
     {% if form.non_field_errors %}
@@ -228,7 +228,7 @@
     </div>
 
     <div class="flex gap-3">
-      <button type="submit"
+      <button type="submit" form="listing-form"
               class="bg-blue-600 text-white py-2 px-6 rounded-md hover:bg-blue-700 font-medium text-sm">
         {{ action }}
       </button>
