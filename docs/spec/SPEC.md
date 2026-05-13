@@ -275,5 +275,5 @@ Covers: service description, user account responsibilities, rental agreement dis
 - Telegram notifications (may be simpler than email — via Telegram Bot API)
 - Map-based search
 - Mobile native app
-- Data portability export
+- ~~Data portability export~~ → done (Phase 17)
 - Social login (Google etc. via django-allauth)

@@ -82,6 +82,13 @@
 - `User` gains `max_active_listings_override` and `max_pending_bookings_override` (nullable — blank = use site default)
 - `User.get_max_active_listings()` / `get_max_pending_bookings()` resolve per-user override → site default
 - `listing_create` view checks active listing count before allowing creation
+
+## Phase 17: Data Portability Export ✓
+
+- "Download my data" button on profile page
+- `GET /accounts/export/` returns a JSON file with profile, listings, bookings, and sent messages
+- Scoped strictly to the requesting user — no other user's data included
+- Satisfies GDPR Art. 20 (right to data portability)
 - `booking_create` view checks pending booking count before allowing submission
 - Both limits exposed in Django admin: site defaults in Site Settings, per-user overrides in User edit
 
