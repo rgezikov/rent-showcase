@@ -143,6 +143,8 @@ docker compose exec app uv run pytest -m e2e
 - Mark individual notification as read updates the read flag
 - Mark all as read clears all unread for the user
 - Notifications of other users are not accessible
+- `/notifications/unread-count/` returns correct badge fragment for authenticated user
+- `/messaging/<pk>/messages/` returns messages partial for booking participant; 404 for others
 
 ### E2E tests ✓
 - Bell icon badge count increments when a new notification arrives

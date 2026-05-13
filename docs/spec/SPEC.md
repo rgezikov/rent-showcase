@@ -164,6 +164,8 @@ Each account has a personal notification log accessible from the navigation bar 
 
 ### Delivery
 - **In-app only for MVP.**
+- The bell badge updates automatically every 10 seconds via HTMX polling — no page refresh required.
+- The message thread on the booking detail page also polls every 10 seconds for new messages.
 - Email and/or Telegram notifications are a post-MVP feature.
 
 ---

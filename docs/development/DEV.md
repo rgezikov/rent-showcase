@@ -64,6 +64,8 @@
 - `Notification` model (event type, recipient, booking FK, read flag)
 - Triggers: new request, confirmed, rejected, cancelled, new message
 - Bell icon with unread count badge in navbar (context processor)
+- Badge updates live via HTMX polling (`/notifications/unread-count/`) every 10s — no page refresh
+- Message thread on booking detail also polls every 10s for new messages
 - Notification list page
 - Mark as read (individual and all)
 
@@ -107,7 +109,7 @@
 - One-command deploy: `bash /opt/rent-showcase/scripts/deploy.sh`
 - Brevo transactional email: domain `rent.respobit.eu` authenticated (SPF, DKIM via CNAME, DMARC)
 
-## Phase 12: Google OAuth
+## Phase 12: Google OAuth ✓
 → *Tests: [DEV-TEST.md Phase 8](DEV-TEST.md#phase-8-google-oauth)*
 
 - Install and configure `django-allauth` with Google provider
