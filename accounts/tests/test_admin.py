@@ -82,5 +82,7 @@ class TestRegistrationToggle:
         # Create settings via admin
         client.post(reverse('admin:accounts_sitesettings_add'), {
             'registration_open': '',  # unchecked = False
+            'max_active_listings': 20,
+            'max_pending_bookings': 10,
         })
         assert SiteSettings.get().registration_open is False

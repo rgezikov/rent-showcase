@@ -24,6 +24,8 @@ def unblock_users(modeladmin, request, queryset):
 class UserAdmin(BaseUserAdmin):
     fieldsets = BaseUserAdmin.fieldsets + (
         (_('Profile'), {'fields': ('account_type', 'company_name', 'phone', 'location', 'avatar', 'bio')}),
+        (_('Limits'), {'fields': ('max_active_listings_override', 'max_pending_bookings_override'),
+                       'description': _('Leave blank to use the site-wide defaults from Site Settings.')}),
     )
     add_fieldsets = BaseUserAdmin.add_fieldsets + (
         (_('Profile'), {'fields': ('account_type', 'company_name', 'phone', 'location')}),
@@ -36,7 +38,7 @@ class UserAdmin(BaseUserAdmin):
 
 @admin.register(SiteSettings)
 class SiteSettingsAdmin(admin.ModelAdmin):
-    fields = ['registration_open']
+    fields = ['registration_open', 'max_active_listings', 'max_pending_bookings']
 
     def has_add_permission(self, request):
         return not SiteSettings.objects.exists()

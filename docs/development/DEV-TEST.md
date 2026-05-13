@@ -221,6 +221,30 @@ Manual test checklist:
 
 ---
 
+## Phase 10: Extended Pricing Model ✓
+*Covers [DEV.md Phase 15](DEV.md#phase-15-extended-pricing-model)*
+
+### Unit & model tests ✓
+- `delivery_fee` is included in `Booking.calculate_price()`
+- `deposit` is NOT included in `Booking.calculate_price()` (shown separately)
+- `BookingForm` rejects bookings shorter than `minimum_days`
+- `BookingForm` accepts bookings equal to `minimum_days`
+
+---
+
+## Phase 11: Per-user limits
+*Covers [DEV.md Phase 16](DEV.md#phase-16-per-user-limits)*
+
+
+### Unit & view tests
+- Creating a listing is blocked when user has reached `max_active_listings`
+- Creating a listing is allowed when user is below the limit
+- Booking is blocked when user has reached `max_pending_bookings`
+- Per-user override takes precedence over site default
+- Site default is used when no per-user override is set
+
+---
+
 ## Phase 7: Regression & pre-deployment
 *Runs before production deploys*
 

@@ -88,6 +88,13 @@ def listing_detail(request, pk):
 
 @login_required
 def listing_create(request):
+    active_count = request.user.listings.filter(is_active=True).count()
+    if active_count >= request.user.get_max_active_listings():
+        messages.error(request, _(
+            'You have reached the maximum number of active listings (%(max)s).'
+        ) % {'max': request.user.get_max_active_listings()})
+        return redirect('listings:my_listings')
+
     if request.method == 'POST':
         form = ListingForm(request.POST)
         photo_form = PhotoUploadForm(request.POST, request.FILES)

@@ -75,6 +75,13 @@ A Data Protection Officer is not mandatory for a small marketplace of this type.
 ### Registration toggle
 - An admin-controlled toggle (`SiteSettings.registration_open`) allows registration to be disabled site-wide without a code change.
 
+### Per-user limits
+- **Max active listings** — prevents a user from creating an excessive number of listings.
+- **Max pending bookings** — prevents a user from flooding owners with booking requests.
+- Global defaults are set in `SiteSettings` (`max_active_listings` default: 20, `max_pending_bookings` default: 10).
+- Individual overrides can be set per user in the admin (leave blank to use the site default).
+- A trusted power user can be given a higher limit; a flagged account can be restricted below the default.
+
 ---
 
 ## 5. Listings

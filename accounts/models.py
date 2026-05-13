@@ -25,12 +25,33 @@ class User(AbstractUser):
     avatar = models.ImageField(_('avatar'), upload_to='avatars/', blank=True)
     bio = models.TextField(_('bio'), blank=True)
 
+    max_active_listings_override = models.PositiveIntegerField(
+        _('max active listings override'),
+        null=True, blank=True,
+        help_text=_('Leave blank to use the site-wide default.'),
+    )
+    max_pending_bookings_override = models.PositiveIntegerField(
+        _('max pending bookings override'),
+        null=True, blank=True,
+        help_text=_('Leave blank to use the site-wide default.'),
+    )
+
     class Meta:
         verbose_name = _('user')
         verbose_name_plural = _('users')
 
     def __str__(self):
         return self.email
+
+    def get_max_active_listings(self):
+        if self.max_active_listings_override is not None:
+            return self.max_active_listings_override
+        return SiteSettings.get().max_active_listings
+
+    def get_max_pending_bookings(self):
+        if self.max_pending_bookings_override is not None:
+            return self.max_pending_bookings_override
+        return SiteSettings.get().max_pending_bookings
 
     @property
     def is_company(self):
@@ -48,6 +69,16 @@ class SiteSettings(models.Model):
         _('registration open'),
         default=True,
         help_text=_('Uncheck to prevent new user registrations.'),
+    )
+    max_active_listings = models.PositiveIntegerField(
+        _('max active listings per user'),
+        default=20,
+        help_text=_('Maximum number of active listings a user can have. Per-user overrides take precedence.'),
+    )
+    max_pending_bookings = models.PositiveIntegerField(
+        _('max pending bookings per user'),
+        default=10,
+        help_text=_('Maximum number of pending booking requests a user can have at once. Per-user overrides take precedence.'),
     )
 
     class Meta:

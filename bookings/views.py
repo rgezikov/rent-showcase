@@ -20,6 +20,13 @@ def booking_create(request, listing_pk):
         messages.error(request, _('You cannot book your own listing.'))
         return redirect('listings:detail', pk=listing_pk)
 
+    pending_count = Booking.objects.filter(renter=request.user, status=Booking.PENDING).count()
+    if pending_count >= request.user.get_max_pending_bookings():
+        messages.error(request, _(
+            'You have reached the maximum number of pending booking requests (%(max)s).'
+        ) % {'max': request.user.get_max_pending_bookings()})
+        return redirect('listings:detail', pk=listing_pk)
+
     if request.method == 'POST':
         form = BookingForm(listing, request.POST)
         if form.is_valid():

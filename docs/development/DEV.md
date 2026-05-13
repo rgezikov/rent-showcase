@@ -76,6 +76,15 @@
 - User block/unblock (`is_active` toggle), listing deactivate/activate
 - `SiteSettings` singleton model — registration open/closed toggle (admin-controlled)
 
+## Phase 16: Per-user limits
+
+- `SiteSettings` gains `max_active_listings` (default 20) and `max_pending_bookings` (default 10)
+- `User` gains `max_active_listings_override` and `max_pending_bookings_override` (nullable — blank = use site default)
+- `User.get_max_active_listings()` / `get_max_pending_bookings()` resolve per-user override → site default
+- `listing_create` view checks active listing count before allowing creation
+- `booking_create` view checks pending booking count before allowing submission
+- Both limits exposed in Django admin: site defaults in Site Settings, per-user overrides in User edit
+
 ## Phase 8: Translations ✓
 → *Tests: [DEV-TEST.md Phase 6](DEV-TEST.md#phase-6-translations)*
 
