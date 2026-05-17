@@ -266,7 +266,7 @@ Covers: service description, user account responsibilities, rental agreement dis
 
 ## 16. Post MVP Features
 
-- Listing statistics for owners (views, booking requests, confirmed bookings, revenue per listing)
+- ~~Listing statistics for owners (views, booking requests, confirmed bookings, revenue per listing)~~ → done (Phase 18)
 - ~~Extended pricing model: deposit, delivery fee, minimum rental period~~ → done (Phase 15)
 - Reviews and ratings
 - Email notifications (booking events, messages)
@@ -274,4 +274,4 @@ Covers: service description, user account responsibilities, rental agreement dis
 - ~~Email notifications~~ → done (Phase 14)
 - Telegram notifications (may be simpler than email — via Telegram Bot API)
 - ~~Data portability export~~ → done (Phase 17)
-- Social login (Google etc. via django-allauth)
+- ~~Social login (Google etc. via django-allauth)~~ → done (Phase 19)
